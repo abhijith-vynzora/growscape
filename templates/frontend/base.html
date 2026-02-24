@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>{% block title %}GrowScape - Gardening & Landscaping Services{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <!-- SlickNav -->
+    <link href="{% static 'css/slicknav.min.css' %}" rel="stylesheet">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <!-- Font Awesome -->
+    <link href="{% static 'css/all.css' %}" rel="stylesheet" media="screen">
+    <!-- Animate -->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!-- Mouse Cursor -->
+    <link rel="stylesheet" href="{% static 'css/mousecursor.css' %}">
+    <!-- Main Custom CSS -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<style>
+    .navbar-brand img {
+        height: 60px;
+        width: auto;
+        max-height: 65px;
+        object-fit: contain;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-brand img {
+            height: 45px;
+        }
+    }
+    .main-footer {
+        padding: 100px 0 60px; /* top | bottom */
+        margin-top: 0;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .main-footer::before {
+        display: none;
+    }
+    .footer-contact a {
+        color: #fff !important;
+        text-decoration: none;
+    }
+    
+    .footer-contact a:hover {
+        color: #ddd;
+    }
+    .booking-btn {
+        display: inline-block;
+        padding: 12px 28px;
+        background-color: #0b3d2c; /* adjust to your theme */
+        color: #fff;
+        font-weight: 600;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
+    
+    .booking-btn:hover {
+        background-color: #0f5132;
+        color: #fff;
+    }
+    @media (max-width: 991px) {
+        .main-header {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background-color: #ffffff !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .header-sticky {
+            background-color: #ffffff !important;
+        }
+    
+        /* Compensate for fixed header height */
+        .hero,
+        .page-header {
+            margin-top: 80px;
+        }
+    }
+    {% comment %} .footer-logo-mobile {
+        display: none;
+    }
+    
+    @media (max-width: 991px) {
+        .footer-logo-desktop {
+            display: none;
+        }
+        .footer-logo-mobile {
+            display: block;
+        }
+    } {% endcomment %}
+
+    .logo-mobile { display: none; }
+    .logo-desktop { display: block; }
+
+    @media (max-width: 991px) {
+        .logo-desktop { display: none; }
+        .logo-mobile { display: block; }
+    }
+    .sub-menu li a:hover,
+    .sub-menu .nav-link:hover {
+        color: #fff !important;
+    }
+    .hero-slide {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@media (max-width: 991px) {
+    .hero-slide {
+        height: 70vh;
+        min-height: 450px;
+    }
+}
+    </style>
+   
+<body>
+
+    <!-- Preloader Start -->
+    <div class="preloader">
+        <div class="loading-container">
+            <div id="loading-icon">
+                <img src="{% static 'loader.png' %}" alt="Loading...">
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .preloader {
+            background-color: #ffffff !important;
+        }
+        #loading-icon img {
+            width: 150px !important;
+            height: 150px !important;
+            object-fit: contain !important;
+            animation: spin 1.5s linear infinite;
+        }
+        @keyframes spin {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <!-- Preloader End -->
+
+    <!-- Header Start -->
+    <header class="main-header">
+        <div class="header-sticky">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+
+
+                    <!-- Logo Start -->
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img src="{% static 'logo.webp' %}" alt="GrowScape" class="logo-mobile">
+                        <img src="{% static 'logo-white.png' %}" alt="GrowScape" class="logo-desktop">
+                    </a>
+                    <!-- Logo End -->
+
+
+                    <!-- Main Menu Start -->
+                    <div class="collapse navbar-collapse main-menu">
+                        <div class="nav-menu-wrapper">
+                            <ul class="navbar-nav mr-auto" id="menu">
+                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'portfolio' %}">Projects</a>
+                                </li>
+                    
+                                <li class="nav-item submenu">
+                                    <a class="nav-link" href="{% url 'services' %}">Services</a>
+                                    <ul class="sub-menu">
+                                        {% for service in nav_services %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'service_detail' service.slug %}">{{ service.name }}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'public_blog_list' %}">Blogs</a>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                                </li>
+                    
+                                <li class="nav-item d-lg-none" style="margin-top: 10px;">
+                                    <a class="nav-link" href="{% url 'service_inquiry' %}" 
+                                       style="background-color: #0b3d2c; color: #ffffff !important; font-weight: 700; padding: 10px 20px; border-radius: 8px; text-align: center;">
+                                       Book Now
+                                    </a>
+                                </li>
+                    
+                            </ul>
+                        </div>
+                    
+                        <a href="{% url 'service_inquiry' %}" class="booking-btn d-none d-lg-inline-block">
+                            Booking
+                        </a>
+                    
+                    </div>
+                    <!-- Main Menu End -->
+
+                    <div class="navbar-toggle"></div>
+                </div>
+            </nav>
+            <div class="responsive-menu"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Page Content -->
+    {% block content %}{% endblock %}
+    <!-- Page Content End -->
+
+    <!-- Footer Start -->
+    <footer class="main-footer"
+            style="background: url('{% static "images/new/footer.jpg" %}') center/cover no-repeat;">
+        <div class="container">
+            <div class="row">
+    
+                <!-- About Footer -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="about-footer">
+                        <div class="footer-logo">
+                           
+                            <img src="{% static 'logo-white.png' %}" alt="GrowScape" >
+                        </div>
+                        <div class="about-footer-content">
+                            <p>Transforming outdoor spaces into beautiful, functional landscapes tailored to your vision.</p>
+                        </div>
+                        <div class="footer-social-links">
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Explore Links -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="footer-links">
+                        <h3>explore</h3>
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                            <li><a href="{% url 'portfolio' %}">Projects</a></li>
+                            <li><a href="{% url 'public_blog_list' %}">Blog</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                            <li><a href="{% url 'service_inquiry' %}">Book a Site Visit</a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Working Hours -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="working-hour">
+                        <h3>working hours</h3>
+                        <div class="working-hour-box">
+                            <p>Monday - Friday</p>
+                            <p>07.00 - 23.00</p>
+                        </div>
+                        <div class="working-hour-box">
+                            <p>Saturday</p>
+                            <p>07.00 - 20.00</p>
+                        </div>
+                        <div class="working-hour-box">
+                            <p>Sunday</p>
+                            <p>10.00 - 18.00</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Footer Contact -->
+                <div class="col-lg-3 col-md-4">
+                    <div class="footer-contact">
+                        <div class="footer-info-box">
+                            <h3>address</h3>
+                            <p>Dubai, United Arab Emirates</p>
+                        </div>
+                        <div class="footer-info-box">
+                            <h3>contact</h3>
+                            <p><a href="tel:+971566032544">+971 56 603 2544</a></p>
+                            <p><a href="tel:+971566032354">+971 56 603 2354</a></p>
+                            <p><a href="mailto:growscape.uae@outlook.com">growscape.uae@outlook.com</a></p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <!-- Footer Copyright -->
+            <div class="footer-copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="footer-copyright-text">
+                            <p class="mb-0">© <span id="copyright-year"></span> <strong>GrowScape</strong>. All Rights Reserved.</p>
+                            <small>Designed by <a href="https://vynzora.com/" style="color:#fff;">Vynzora</a></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById('copyright-year').textContent = new Date().getFullYear();
+            </script>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/validator.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/isotope.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/SmoothScroll.js' %}"></script>
+    <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'js/gsap.min.js' %}"></script>
+    <script src="{% static 'js/magiccursor.js' %}"></script>
+    <script src="{% static 'js/SplitText.js' %}"></script>
+    <script src="{% static 'js/ScrollTrigger.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mb.YTPlayer.min.js' %}"></script>
+    <script src="{% static 'js/wow.js' %}"></script>
+    <script src="{% static 'js/function.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

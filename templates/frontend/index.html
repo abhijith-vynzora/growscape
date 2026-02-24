@@ -1,0 +1,1027 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Home - GrowScape{% endblock %}
+{% block content %}
+<style>
+    .why-choose-image img {
+        width: 100%;
+        height: 800px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+</style>
+    <!-- Hero Section Start -->
+    <div class="hero hero-slider">
+        <div class="hero-slider-layout">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Hero Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="hero-slide">
+                            <div class="hero-slider-image">
+                                <img src="{% static 'images/new/hero2.jpg' %}" alt="">
+                            </div>
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8">
+                                        <div class="hero-content">
+                                            <div class="section-title">
+                                                <h3 class="wow fadeInUp">beautiful garden</h3>
+                                                <h1 class="text-anime-style-2" data-cursor="-opaque"><span>Transform</span> your outdoor space <span>into a lush paradise</span></h1>
+                                                <p class="wow fadeInUp" data-wow-delay="0.25s">Whether you're dreaming of a vibrant garden, a serene patio, or a functional outdoor living space, our team of skilled gascapers and gardeners is here to bring your vision to life.</p>
+                                            </div>
+                                            <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
+                                                <a href="{% url 'services' %}" class="btn-default">explore more</a>
+                                                <a href="#how-it-work" class="btn-default btn-highlighted">how it work</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hero Slide 1 End -->
+
+                    <!-- Hero Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="hero-slide">
+                            <div class="hero-slider-image">
+                                <img src="{% static 'images/new/hero1.jpg' %}" alt="">
+                            </div>
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8">
+                                        <div class="hero-content">
+                                            <div class="section-title">
+                                                <h3 class="wow fadeInUp">expert landscaping</h3>
+                                                <h1 class="text-anime-style-2" data-cursor="-opaque"><span>Creating</span> beautiful gardens <span>for every space</span></h1>
+                                                <p class="wow fadeInUp" data-wow-delay="0.25s">From design to installation and maintenance, we bring your dream garden to life with professional craftsmanship and a passion for the outdoors.</p>
+                                            </div>
+                                            <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
+                                                <a href="{% url 'portfolio' %}" class="btn-default">our projects</a>
+                                                <a href="{% url 'contact' %}" class="btn-default btn-highlighted">contact us</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hero Slide 2 End -->
+
+                </div>
+                <div class="hero-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section End -->
+
+    <!-- Customer Review Section Start -->
+    <div class="customer-review">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="our-happy-customer">
+                        <div class="happy-customer-counter">
+                            <h2><span class="counter">3.6</span>k+</h2>
+                            <p>happy customers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 order-lg-2 order-md-3">
+                    <div class="customer-review-content">
+                        <p>Let's bring your dream garden to life! Whether you're looking for a complete landscape overhaul or simple garden maintenance.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 order-lg-3 order-md-2">
+                    <div class="customer-consultation-box">
+                        <div class="customer-consultation-title">
+                            <h3>Ready to Transform Your Outdoor Space?</h3>
+                        </div>
+                        <div class="customer-consultation-image">
+                            <img src="{% static 'images/customer-consultation-box-img.svg' %}" alt="">
+                        </div>
+                        <div class="customer-consultation-body">
+                            <p>Contact us today for a free consultation and discover how we can turn your vision into reality.</p>
+                        </div>
+                        <div class="customer-consultation-footer">
+                            <a href="{% url 'contact' %}" class="learn-more-btn">learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Customer Review Section End -->
+
+    <!-- About Us Section Start -->
+    <div class="about-us">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <div class="about-img-1">
+                            <figure class="image-anime reveal">
+                                <img src="{% static 'images/new/wp1.webp' %}" alt="">
+                            </figure>
+                        </div>
+                        <div class="about-img-2">
+                            <figure class="image-anime reveal">
+                                <img src="{% static 'images/new/pool3.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                        <div class="company-experience">
+                            <div class="company-experience-counter">
+                                <h2><span class="counter">20</span>+</h2>
+                            </div>
+                            <div class="company-experience-content">
+                                <p>years of experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-us-content">
+                        <div class="section-title">
+                            <div class="section-bg-title">
+                                <span>about us</span>
+                            </div>
+                            <h3 class="wow fadeInUp">About Us</h3>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">Sowing dreams<span>, growing landscapes</span></h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">We transform your landscaping dreams into reality, crafting beautiful, tranquil outdoor spaces that reflect your vision and enhance your lifestyle. Let us grow beauty and joy in every garden.</p>
+                        </div>
+                        <div class="about-us-body wow fadeInUp" data-wow-delay="0.5s">
+                            <ul>
+                                <li>Experienced Garden Landscaping</li>
+                                <li>Professional Team of Experts</li>
+                                <li>We Adapt to Your Needs</li>
+                                <li>Quality Craftsmanship Guaranteed</li>
+                            </ul>
+                        </div>
+                        <div class="about-us-footer wow fadeInUp" data-wow-delay="0.75s">
+                            <div class="about-company-founder">
+                                <div class="company-founder-image">
+                                    <figure class="image-anime">
+                                        <img src="{% static 'images/about-company-founder-img.jpg' %}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="company-founder-content">
+                                    <h3>GrowScape Team</h3>
+                                    <p>CEO & Founder</p>
+                                </div>
+                            </div>
+                            <div class="contact-now-box about-contact-box">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-phone.svg' %}" alt="">
+                                </div>
+                                <div class="contact-now-box-content">
+                                    <p>call us any time</p>
+                                    <h3>(+01) 789 987 645</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Us Section End -->
+
+    <!-- Our Services Section Start -->
+    <div class="our-services">
+        <div class="container">
+            <div class="row section-row align-items-center">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <div class="section-bg-title dark-bg-1">
+                            <span>services</span>
+                        </div>
+                        <h3 class="wow fadeInUp">services</h3>
+                        <h2 class="text-anime-style-2" data-cursor="-opaque">Services <span> for every need</span></h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title-content">
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">Enhance your outdoor space with our professional garden landscaping services, customized to suit every need and preference. From design to installation, we create beautiful, functional gardens that reflect your style.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for service in services %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item wow fadeInUp">
+                        <!-- Service Image -->
+                        <div class="service-image">
+                            <a href="{% url 'service_detail' service.slug %}">
+                                <figure>
+                                    {% if service.cover_image %}
+                                        <img src="{{ service.cover_image.url }}" alt="{{ service.name }}">
+                                    {% else %}
+                                        <img src="{% static 'images/service-img-1.jpg' %}" alt="{{ service.name }}">
+                                    {% endif %}
+                                </figure>
+                            </a>
+                        </div>
+                        <!-- Service Title -->
+                        <div class="service-title">
+                            <h3>{{ service.name }}</h3>
+                        </div>
+                        <!-- Service Body -->
+                        <div class="service-body">
+                            <div class="service-content">
+                                <p>{{ service.full_description|striptags|truncatewords:12 }}</p>
+                            </div>
+                            <div class="service-btn">
+                                <a href="{% url 'service_detail' service.slug %}" class="readmore-btn">
+                                    <img src="{% static 'images/arrow-green.svg' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p>No services available yet.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Our Services Section End -->
+
+    <!-- Our Expertise Section Start -->
+    <div class="our-expertise">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="expertise-content">
+                        <div class="section-title">
+                            <div class="section-bg-title">
+                                <span>expertise</span>
+                            </div>
+                            <h3 class="wow fadeInUp">expertise</h3>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">Our experience <span>in garden landscaping</span></h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">With years of experience, we specialize in creating stunning, functional garden landscapes tailored to your vision and needs.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.5s">Explore our curated collection of seeds and plants, handpicked for their quality and suitability for various climates. Whether you're looking for heirloom vegetables, fragrant herbs, or colorful flowers, we have something for every gardener.</p>
+                        </div>
+                        <div class="expertise-body">
+                            <div class="expertise-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-expertise-1.svg' %}" alt="">
+                                </div>
+                                <div class="expertise-item-content">
+                                    <h3><span class="counter">92</span>%</h3>
+                                    <p>gardening</p>
+                                </div>
+                            </div>
+                            <div class="expertise-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-expertise-2.svg' %}" alt="">
+                                </div>
+                                <div class="expertise-item-content">
+                                    <h3><span class="counter">82</span>%</h3>
+                                    <p>landscape</p>
+                                </div>
+                            </div>
+                            <div class="expertise-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-expertise-3.svg' %}" alt="">
+                                </div>
+                                <div class="expertise-item-content">
+                                    <h3><span class="counter">98</span>%</h3>
+                                    <p>seed & plants</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="expertise-images">
+                        <div class="expertise-image-box-1">
+                            <div class="expertise-img-1">
+                                <figure class="image-anime reveal">
+                                    <img src="{% static 'images/new/gardner1.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="expertise-img-3">
+                                <figure class="image-anime reveal">
+                                    <img src="{% static 'images/new/gardner2.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="expertise-image-box-2">
+                            <div class="expertise-img-2">
+                                <figure class="image-anime reveal">
+                                    <img src="{% static 'images/new/gardner3.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="expertise-img-4">
+                                <figure class="image-anime reveal">
+                                    <img src="{% static 'images/new/gardner4.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Expertise Section End -->
+
+    <!-- Intro Video Section Start -->
+    <div class="intro-video parallaxie">
+        <div class="container">
+            <div class="row intro-video-box align-items-center">
+                <div class="col-lg-8">
+                    <div class="section-title">
+                        <h2 class="text-anime-style-2" data-cursor="-opaque">Watch our Gardening & <span>landscaping projects in action</span></h2>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="video-play-box">
+                        <div class="video-play-content">
+                            <div class="video-play-button">
+                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
+                                    <i class="fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="specialize-item wow fadeInUp" data-wow-delay="0.25s">
+                        <div class="icon-box">
+                            <img src="{% static 'images/icon-specialize.svg' %}" alt="">
+                        </div>
+                        <div class="specialize-content">
+                            <p>With years of experience, we specialize in creating stunning, functional garden landscapes tailored to your vision and needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="section-btn wow fadeInUp" data-wow-delay="0.25s">
+                        <a href="{% url 'contact' %}" class="btn-default btn-highlighted">contact now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Intro Video Section End -->
+
+    <!-- Why Choose Us Section Start -->
+    <div class="why-choose-us">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <div class="why-choose-image">
+                        <figure>
+                            <img src="{% static 'images/new/architect.jpg' %}" alt="">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1">
+                    <div class="why-choose-content">
+                        <div class="section-title">
+                            <div class="section-bg-title">
+                                <span>Why Us?</span>
+                            </div>
+                            <h3 class="wow fadeInUp">why choose us</h3>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">Why choose us <span>for your landscaping needs?</span></h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Choose us for expert landscaping: personalized designs, quality craftsmanship, and dedicated service to make your outdoor space exceptional.</p>
+                        </div>
+                        <div class="why-choose-body">
+                            <div class="why-choose-item wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-why-choose-1.svg' %}" alt="">
+                                </div>
+                                <div class="why-choose-item-content">
+                                    <h3>expertise & experience</h3>
+                                    <p>Years of expertise in crafting beautiful gardens.</p>
+                                </div>
+                            </div>
+                            <div class="why-choose-item wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-why-choose-2.svg' %}" alt="">
+                                </div>
+                                <div class="why-choose-item-content">
+                                    <h3>high-quality craftsmanship</h3>
+                                    <p>Top-notch craftsmanship with premium materials and attention.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Why Choose Us Section End -->
+
+    <!-- How It Work Section Start -->
+    <div class="how-it-work" id="how-it-work">
+        <div class="container">
+            <div class="row section-row align-items-center">
+                <div class="col-lg-7 col-md-9">
+                    <div class="section-title">
+                        <div class="section-bg-title dark-bg-2">
+                            <span>How It Work</span>
+                        </div>
+                        <h3 class="wow fadeInUp">how it work</h3>
+                        <h2 class="text-anime-style-2" data-cursor="-opaque">How Our Garden <span>Landscaping Process Works</span></h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">Our garden landscaping process includes consultation, design, installation, and maintenance, ensuring your outdoor space is beautifully transformed.</p>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-3">
+                    <div class="how-work-circle-img">
+                        <img src="{% static 'images/how-work-circle-img.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="how-work-process-box wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="how-work-item">
+                            <div class="work-process-no"><h3>1</h3></div>
+                            <div class="work-process-content">
+                                <h3>Initial Consultation</h3>
+                                <p>Meet with our team to discuss your vision, needs, and preferences for your garden.</p>
+                            </div>
+                        </div>
+                        <div class="how-work-item">
+                            <div class="work-process-no"><h3>2</h3></div>
+                            <div class="work-process-content">
+                                <h3>Site Assessment</h3>
+                                <p>Evaluate your outdoor space to understand existing conditions and design opportunities.</p>
+                            </div>
+                        </div>
+                        <div class="how-work-item">
+                            <div class="work-process-no"><h3>3</h3></div>
+                            <div class="work-process-content">
+                                <h3>Design Proposal</h3>
+                                <p>Create a customized garden design plan that reflects your style and functional requirements.</p>
+                            </div>
+                        </div>
+                        <div class="how-work-item">
+                            <div class="work-process-no"><h3>4</h3></div>
+                            <div class="work-process-content">
+                                <h3>Material Selection</h3>
+                                <p>Choose high-quality materials and plants that align with the design and your preferences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- How It Work Section End -->
+
+
+
+<!-- Our Work Section Start -->
+<div class="our-work">
+    <div class="container">
+
+        <div class="row section-row align-items-center">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <div class="section-bg-title">
+                        <span>Our Work</span>
+                    </div>
+                    <h3 class="wow fadeInUp">our work</h3>
+                    <h2 class="text-anime-style-2" data-cursor="-opaque">
+                        Our stunning garden 
+                        <span>landscaping projects</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="section-title-content wow fadeInUp" data-wow-delay="0.25s">
+                    <p>
+                        Explore our stunning garden landscaping projects, 
+                        where creativity meets craftsmanship.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Filter Nav -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="our-work-nav wow fadeInUp" data-wow-delay="0.25s">
+                    <ul>
+                        <li>
+                            <a href="#" class="active-btn" data-filter="*">
+                                all
+                            </a>
+                        </li>
+
+                        {% for category in categories %}
+                        <li>
+                            <a href="#" data-filter=".cat-{{ category.id }}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Items -->
+        <div class="row work-item-boxes align-items-center">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 work-item-box cat-{{ project.service_category.id }}">
+                <div class="work-item wow fadeInUp"
+                     {% if not forloop.first %}
+                     data-wow-delay="0.{{ forloop.counter0 }}2s"
+                     {% endif %}>
+
+                    <div class="work-image" data-cursor-text="View">
+                        <a href="{% url 'portfolio' %}">
+                            <figure>
+                                {% if project.image %}
+                                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                                {% else %}
+                                    <img src="{% static 'images/our-work-1.jpg' %}" alt="{{ project.title }}">
+                                {% endif %}
+                            </figure>
+                        </a>
+                    </div>
+
+                    <div class="work-body">
+                        <div class="work-content">
+                            <h3>{{ project.title }}</h3>
+                            <p>
+                                {{ project.description|striptags|truncatewords:15 }}
+                            </p>
+                        </div>
+
+                        <div class="work-readmore-btn">
+                            <a href="{% url 'portfolio' %}">
+                                <img src="{% static 'images/arrow-green.svg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No projects available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+<!-- Our Work Section End -->
+
+<!-- Our Testimonials Start -->
+<div class="our-testimonials parallaxie"
+     style="background: url('{% static "images/new/testimonials.jpg" %}') center/cover no-repeat;">
+
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-6 col-md-9">
+                <div class="testimonial-box">
+
+                    <div class="section-title">
+                        <div class="section-bg-title dark-bg-1">
+                            <span>Review</span>
+                        </div>
+                        <h3 class="wow fadeInUp">testimonials</h3>
+                        <h2 class="text-anime-style-2">
+                            Our happy <span>client says</span>
+                        </h2>
+                    </div>
+
+                    <div class="testimonial-slider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper" data-cursor-text="Drag">
+
+                                {% for testimonial in testimonials %}
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+
+                                        <div class="testimonial-header">
+                                            <div class="author-image">
+                                                <figure class="image-anime">
+
+                                                    {% if testimonial.image %}
+                                                        <img src="{{ testimonial.image.url }}"
+                                                             alt="{{ testimonial.name }}"
+                                                             style="width:80px;height:80px;
+                                                                    object-fit:cover;
+                                                                    border-radius:50%;">
+                                                    {% else %}
+                                                        <img src="{% static 'images/author-1.jpg' %}"
+                                                             alt="{{ testimonial.name }}"
+                                                             style="width:80px;height:80px;
+                                                                    object-fit:cover;
+                                                                    border-radius:50%;">
+                                                    {% endif %}
+
+                                                </figure>
+                                            </div>
+
+                                            <div class="author-content">
+                                                <h3>{{ testimonial.name }}</h3>
+                                                <p>Valued Customer</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="testimonial-content">
+                                            <p>{{ testimonial.review|safe }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-content">
+                                            <p>No testimonials yet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="testimonial-btn">
+                                <div class="testimonial-button-prev"></div>
+                                <div class="testimonial-button-next"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Our Testimonials End -->
+
+    <!-- Our FAQs Section Start -->
+    <div class="our-faqs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="our-faqs-content">
+                        <div class="section-title">
+                            <div class="section-bg-title">
+                                <span>FAQs</span>
+                            </div>
+                            <h3 class="wow fadeInUp">FAQs</h3>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">Our frequently <span>asked questions</span></h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Find answers to common questions about our services. From project timelines to costs, we cover everything you need to know about our garden landscaping process.</p>
+                        </div>
+                        <div class="our-faqs-cta wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="faqs-cta-box">
+                                <div class="icon-box">
+                                    <img src="{% static 'images/icon-faqs-cta-box.svg' %}" alt="">
+                                </div>
+                                <div class="faqs-cta-content">
+                                    <h3>Still Have Questions?</h3>
+                                    <p>What question or topic would you like assistance with today?</p>
+                                </div>
+                            </div>
+                            <div class="faqs-cta-btn">
+                                <a href="{% url 'contact' %}" class="btn-default">get in touch</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="our-faq-section">
+                        <div class="faq-accordion" id="accordion">
+                            <div class="accordion-item wow fadeInUp">
+                                <h2 class="accordion-header" id="heading1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                        How do I start the landscaping process?
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <p>Simply contact us for a free consultation. Our team will visit your property, understand your vision, and provide a detailed proposal.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
+                                <h2 class="accordion-header" id="heading2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                        Can you work with my existing garden features?
+                                    </button>
+                                </h2>
+                                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <p>Absolutely! We assess your current outdoor space and incorporate existing features into a new, enhanced design where possible.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
+                                <h2 class="accordion-header" id="heading3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                        How much does garden landscaping cost?
+                                    </button>
+                                </h2>
+                                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <p>Costs depend on the scope of the project. After our consultation, we provide a detailed estimate tailored to your budget and needs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
+                                <h2 class="accordion-header" id="heading4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                        How long does a landscaping project take?
+                                    </button>
+                                </h2>
+                                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <p>Project timelines vary depending on complexity. A simple garden makeover may take a few days, while larger projects can take several weeks.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
+                                <h2 class="accordion-header" id="heading5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                        Do you offer maintenance services after installation?
+                                    </button>
+                                </h2>
+                                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <p>Yes! We offer ongoing maintenance packages to keep your garden looking beautiful throughout the year.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our FAQs Section End -->
+
+    <!-- Our Pricing Section Start -->
+    {% comment %} <div class="our-pricing">
+        <div class="container">
+            <div class="row section-row align-items-center">
+                <div class="col-lg-6">
+                    <!-- Section Title Start -->
+                    <div class="section-title">
+                        <div class="section-bg-title dark-bg-1">
+                            <span>pricing</span>
+                        </div>
+                        <h3 class="wow fadeInUp">pricing plan</h3>
+                        <h2 class="text-anime-style-2" data-cursor="-opaque">Flexible <span>pricing packages</span></h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+
+                <div class="col-lg-6">
+                    <!-- Section Title Content Start -->
+                    <div class="section-title-content wow fadeInUp" data-wow-delay="0.25s">
+                        <p>Explore our flexible pricing plans, tailored to fit your budget and landscaping needs, with transparent costs and no hidden fees.</p>
+                    </div>
+                    <!-- Section Title Content End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- Pricing Item Start -->
+                    <div class="pricing-item wow fadeInUp">
+                        <!-- Pricing Header Start -->
+                        <div class="pricing-header">
+                            <h3>residential</h3>
+                            <h2>$23.08<sub>/ Month</sub></h2>
+                        </div>
+                        <!-- Pricing Header End -->
+
+                        <!-- Pricing Body Start -->
+                        <div class="pricing-body">
+                            <ul>
+                                <li>Install a Patio or Pathway</li>
+                                <li>Install Landscaping</li>
+                                <li>Waterproof a Deck Costs</li>
+                                <li>Remove a Tree Stump</li>
+                            </ul>
+                        </div>
+                        <!-- Pricing Body Start -->
+
+                        <!-- Pricing Footer Start -->
+                        <div class="pricing-footer">
+                            <a href="#" class="btn-default">choose package</a>
+                        </div>
+                        <!-- Pricing Footer End -->
+                    </div>
+                    <!-- Pricing Item End -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Pricing Item Start -->
+                    <div class="pricing-item highlighted-box wow fadeInUp" data-wow-delay="0.25s">
+                        <!-- Pricing Header Start -->
+                        <div class="pricing-header">
+                            <h3>residential</h3>
+                            <h2>$23.08<sub>/ Month</sub></h2>
+                        </div>
+                        <!-- Pricing Header End -->
+
+                        <!-- Pricing Body Start -->
+                        <div class="pricing-body">
+                            <ul>
+                                <li>Install a Patio or Pathway</li>
+                                <li>Install Landscaping</li>
+                                <li>Waterproof a Deck Costs</li>
+                                <li>Remove a Tree Stump</li>
+                            </ul>
+                        </div>
+                        <!-- Pricing Body Start -->
+
+                        <!-- Pricing Footer Start -->
+                        <div class="pricing-footer">
+                            <a href="#" class="btn-default btn-highlighted">choose package</a>
+                        </div>
+                        <!-- Pricing Footer End -->
+                    </div>
+                    <!-- Pricing Item End -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Pricing Item Start -->
+                    <div class="pricing-item wow fadeInUp" data-wow-delay="0.5s">
+                        <!-- Pricing Header Start -->
+                        <div class="pricing-header">
+                            <h3>residential</h3>
+                            <h2>$23.08<sub>/ Month</sub></h2>
+                        </div>
+                        <!-- Pricing Header End -->
+
+                        <!-- Pricing Body Start -->
+                        <div class="pricing-body">
+                            <ul>
+                                <li>Install a Patio or Pathway</li>
+                                <li>Install Landscaping</li>
+                                <li>Waterproof a Deck Costs</li>
+                                <li>Remove a Tree Stump</li>
+                            </ul>
+                        </div>
+                        <!-- Pricing Body Start -->
+
+                        <!-- Pricing Footer Start -->
+                        <div class="pricing-footer">
+                            <a href="#" class="btn-default">choose package</a>
+                        </div>
+                        <!-- Pricing Footer End -->
+                    </div>
+                    <!-- Pricing Item End -->
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    <!-- Our Pricing Section End -->
+
+    <!-- Our Blog Section Start -->
+<div class="our-blog">
+    <div class="container">
+
+        <div class="row section-row align-items-center">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <div class="section-bg-title">
+                        <span>Our Blog</span>
+                    </div>
+                    <h3 class="wow fadeInUp">blog post</h3>
+                    <h2 class="text-anime-style-2">
+                        Latest news and tips 
+                        <span>for garden landscaping</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="section-title-content wow fadeInUp">
+                    <p>
+                        Stay updated with the latest tips, trends,
+                        and inspiration in garden landscaping.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% if blogs %}
+        <div class="row">
+
+            <!-- Featured Blog -->
+            <div class="col-lg-6">
+                {% with blog=blogs.0 %}
+                <div class="highlighted-article-post wow fadeInUp">
+
+                    <div class="highlighted-article-featured-img">
+                        <figure>
+                            <a href="{% url 'blog_detail' blog.slug %}">
+                                {% if blog.image %}
+                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                                {% else %}
+                                    <img src="{% static 'images/post-1.jpg' %}" alt="">
+                                {% endif %}
+                            </a>
+                        </figure>
+
+                        {% comment %} <div class="highlighted-article-tag">
+                            <a href="{% url 'public_blog_list' %}">
+                                {{ blog.category.name|default:"General" }}
+                            </a>
+                        </div> {% endcomment %}
+                    </div>
+
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <ul>
+                                <li>{{ blog.created_at|date:"d M Y" }}</li>
+                                {% comment %} <li>{{ blog.category.name|default:"General" }}</li> {% endcomment %}
+                            </ul>
+                        </div>
+
+                        <div class="article-content">
+                            <h2>
+                                <a href="{% url 'blog_detail' blog.slug %}">
+                                    {{ blog.title }}
+                                </a>
+                            </h2>
+                            <p>
+                                {{ blog.description|striptags|truncatewords:20 }}
+                            </p>
+                        </div>
+
+                        <div class="article-btn">
+                            <a href="{% url 'blog_detail' blog.slug %}" class="btn-default">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                {% endwith %}
+            </div>
+
+            <!-- Other Blogs -->
+            <div class="col-lg-6">
+                <div class="our-article-box">
+
+                    {% for blog in blogs|slice:"1:" %}
+                    <div class="article-post wow fadeInUp">
+
+                        <div class="article-tag">
+                            <a href="{% url 'public_blog_list' %}">
+                                {{ blog.category.name|default:"General" }}
+                            </a>
+                        </div>
+
+                        <div class="article-body">
+                            <div class="article-meta">
+                                <ul>
+                                    <li>Admin</li>
+                                    <li>{{ blog.created_at|date:"d M Y" }}</li>
+                                    <li>{{ blog.category.name|default:"General" }}</li>
+                                </ul>
+                            </div>
+
+                            <div class="article-content">
+                                <h2>
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        {{ blog.title }}
+                                    </a>
+                                </h2>
+                                <p>
+                                    {{ blog.description|striptags|truncatewords:12 }}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+        {% else %}
+        <p class="text-center">No blog posts available.</p>
+        {% endif %}
+
+    </div>
+</div>
+<!-- Our Blog Section End -->
+
+{% endblock %}

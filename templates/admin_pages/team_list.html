@@ -1,0 +1,239 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}Team List | Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard__form__wraper">
+    <div class="create__course__title mb-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <h4 class="mb-0">Team Members</h4>
+        <div class="d-flex align-items-center gap-2 ms-auto">
+            <div class="search-box">
+                <input type="text" id="teamSearchInput" class="form-control form-control-sm" placeholder="Search...">
+            </div>
+        </div>
+        <a href="{% url 'team_create' %}" class="btn btn-success btn-sm">
+            <i class="fas fa-plus"></i> New Member
+        </a>
+    </div>
+
+    <div class="custom-table-container">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Bio</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in team_members %}
+                <tr>
+                    <td>
+                        {% if member.photo %}
+                            <img src="{{ member.photo.url }}" alt="{{ member.name }}" width="60" height="60" style="object-fit:cover;border-radius:50%;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/60x60?text=No+Photo" width="60" height="60" style="border-radius:50%;">
+                        {% endif %}
+                    </td>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.position }}</td>
+                    <td>{{ member.bio|striptags|truncatechars:50 }}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#updateTeamModal{{ member.id }}">Update</button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTeamModal{{ member.id }}">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center py-4 text-muted">No team members found. <a href="{% url 'team_create' %}">Add your first member</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if team_members.has_other_pages %}
+    <nav aria-label="Team pagination">
+        <ul class="pagination justify-content-center mt-4">
+            {% if team_members.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ team_members.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&laquo;&laquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+            {% for i in team_members.paginator.page_range %}
+                {% if team_members.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                {% elif i > team_members.number|add:'-3' and i < team_members.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if team_members.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ team_members.next_page_number }}">&raquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ team_members.paginator.num_pages }}">&raquo;&raquo;</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">&raquo;&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+{% for member in team_members %}
+<div class="modal fade" id="updateTeamModal{{ member.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data" action="{% url 'team_update' member.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Member: {{ member.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ member.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Position</label>
+                        <input type="text" name="position" class="form-control" value="{{ member.position }}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Bio</label>
+                        <textarea name="bio" id="bio-editor-{{ member.id }}" class="form-control rich-editor" rows="3">{{ member.bio|safe }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label>
+                        <input type="file" name="photo" class="form-control team-photo-input" data-preview="#teamPhotoPreview{{ member.id }}" accept="image/*">
+                        <div class="mt-2">
+                            {% if member.photo %}
+                                <img id="teamPhotoPreview{{ member.id }}" src="{{ member.photo.url }}" width="80" height="80" style="object-fit:cover;border-radius:50%;">
+                            {% else %}
+                                <img id="teamPhotoPreview{{ member.id }}" src="https://via.placeholder.com/80x80?text=No+Photo" width="80" height="80" style="border-radius:50%;">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteTeamModal{{ member.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{% url 'team_delete' member.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Member</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete <strong>"{{ member.name }}"</strong>?
+                    <p class="text-danger mt-2">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Z-Index fix for CKEditor inside Bootstrap Modals */
+:root { --ck-z-default: 1055 !important; }
+
+/* Table and Layout Styles */
+.custom-table-container { width:100%; overflow-x:auto; border:1px solid #dee2e6; border-radius:0.375rem; background:white; margin-bottom:1rem; }
+.custom-table-container table { min-width:800px; width:100%; margin-bottom:0; }
+.custom-table-container .table img { width:60px; height:60px; object-fit:cover; border-radius:50%; }
+.custom-table-container thead th { position:sticky; top:0; background-color:#f8f9fa; z-index:10; box-shadow:0 1px 0 #dee2e6; }
+.content-grid { display:block !important; grid-template-columns:none !important; overflow:visible !important; }
+.custom-table-container::-webkit-scrollbar { height:8px; }
+.custom-table-container::-webkit-scrollbar-track { background:#f1f1f1; border-radius:10px; }
+.custom-table-container::-webkit-scrollbar-thumb { background:#888; border-radius:10px; }
+</style>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    
+    // 1. Initialize CKEditor for all textareas with class 'rich-editor'
+    const editors = document.querySelectorAll('.rich-editor');
+    editors.forEach(editorElement => {
+        ClassicEditor
+            .create(editorElement, {
+                toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', '|', 'undo', 'redo']
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+    // 2. Image Preview Logic
+    document.querySelectorAll('.team-photo-input').forEach(input => {
+        input.addEventListener('change', function () {
+            const preview = document.querySelector(this.dataset.preview);
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => preview.src = e.target.result;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    // 3. Search Logic
+    const searchInput = document.getElementById('teamSearchInput');
+    const tableBody = document.querySelector('.custom-table-container table tbody');
+    if (searchInput && tableBody) {
+        const rows = Array.from(tableBody.querySelectorAll('tr')).filter(r => !r.id || r.id !== 'noResultRow');
+
+        function debounce(fn, delay) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), delay); }; }
+        function escapeRegex(str) { return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+        function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+        function performSearch() {
+            const q = searchInput.value.toLowerCase().trim();
+            let count = 0;
+            rows.forEach(row => {
+                // Target the Name column (2nd column)
+                const cell = row.querySelector('td:nth-child(2)');
+                if (cell && cell.hasAttribute('data-original-text')) cell.innerHTML = cell.getAttribute('data-original-text');
+                const text = cell ? cell.textContent.toLowerCase() : '';
+                if (!q || text.includes(q)) { 
+                    row.style.display = ''; count++;
+                    if (q && cell) { cell.setAttribute('data-original-text', cell.textContent); cell.innerHTML = cell.textContent.replace(new RegExp(`(${escapeRegex(q)})`, 'gi'), '<mark style="background:#fff3cd;padding:2px 4px;border-radius:3px;">$1</mark>'); }
+                } else row.style.display = 'none';
+            });
+            let noRow = document.getElementById('noResultRow');
+            if (count === 0 && q) {
+                if (!noRow) { noRow = document.createElement('tr'); noRow.id = 'noResultRow'; tableBody.appendChild(noRow); }
+                noRow.innerHTML = `<td colspan="5" class="text-center py-4 text-muted">No results for "<strong>${escapeHtml(q)}</strong>"</td>`;
+                noRow.style.display = '';
+            } else if (noRow) noRow.style.display = 'none';
+        }
+        searchInput.addEventListener('input', debounce(performSearch, 150));
+    }
+});
+</script>
+{% endblock %}

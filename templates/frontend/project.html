@@ -1,0 +1,96 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Our Projects - GrowScape{% endblock %}
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="page-header-box">
+                        <h1 class="text-anime-style-2" data-cursor="-opaque">Projects</h1>
+                        <nav class="wow fadeInUp">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">projects</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Page Work Start -->
+    <div class="page-work">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <!-- Filter Nav -->
+                    <div class="our-work-nav wow fadeInUp" data-wow-delay="0.25s">
+                        <ul>
+                            <li><a href="#" class="active-btn" data-filter="*">all</a></li>
+                            {% for category in categories %}
+                            <li>
+                                <a href="#" data-filter=".cat-{{ category.slug }}">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="row work-item-boxes align-items-center">
+                        {% for project in projects %}
+<div class="col-lg-4 col-md-6 work-item-box {% if project.service_category %}cat-{{ project.service_category.slug }}{% endif %}">
+    <div class="work-item wow fadeInUp" data-wow-delay="0.{{ forloop.counter0 }}2s">
+        
+        <!-- Cursor text stays on image div only -->
+        <div class="work-image" data-cursor-text="View">
+            <a href="{% url 'project_detail' project.pk %}">
+                <figure>
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    {% else %}
+                        <img src="{% static 'images/our-work-1.jpg' %}" alt="{{ project.title }}">
+                    {% endif %}
+                </figure>
+            </a>
+        </div>
+
+        <div class="work-body">
+            <div class="work-content">
+                <!-- Title and description also clickable -->
+                <a href="{% url 'project_detail' project.pk %}" style="text-decoration:none;color:inherit;">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description|safe|truncatewords:20 }}</p>
+                </a>
+            </div>
+            <div class="work-readmore-btn">
+                <a href="{% url 'project_detail' project.pk %}">
+                    <img src="{% static 'images/arrow-green.svg' %}" alt="">
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% empty %}
+<div class="col-12 text-center py-5">
+    <p>No projects available yet.</p>
+</div>
+{% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Work End -->
+
+{% endblock %}

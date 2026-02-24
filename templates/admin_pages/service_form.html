@@ -1,0 +1,197 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}Add Service | Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+.field-error { display:none; font-size:0.875rem; margin-top:0.25rem; color:#dc3545; }
+.field-error-border { border-color:#dc3545 !important; box-shadow:0 0 0 2px rgba(220,53,69,0.1) !important; }
+.field-valid-border { border-color:#28a745 !important; }
+.ck.ck-editor__top.ck-reset_all { position:relative !important; top:auto !important; z-index:10 !important; }
+.ck.ck-sticky-panel .ck-sticky-panel__content { position:relative !important; top:auto !important; }
+.ck.ck-toolbar { position:relative !important; top:auto !important; }
+.ck-editor { position:relative !important; overflow:visible !important; }
+.ck-editor__editable_inline { min-height:200px; height:auto !important; overflow-y:visible !important; overflow-x:hidden !important; }
+.ck-sticky-panel { position:static !important; }
+.ck.ck-editor { z-index:1 !important; }
+.ck.ck-balloon-panel { z-index:1000 !important; }
+.ck-editor__editable ul, .ck-editor__editable ol { padding-left:40px !important; }
+.ck-editor__editable ul { list-style-type:disc !important; }
+.ck-editor__editable ol { list-style-type:decimal !important; }
+.ck-editor__editable li { display:list-item !important; }
+
+*, *::before, *::after { box-sizing:border-box; }
+html, body { max-width:100%; overflow-x:hidden; }
+.form-wrapper { max-width:900px; width:100%; margin:0 auto; padding:0 1rem; }
+input, textarea, select, .form-control { max-width:100%; width:100%; }
+.modern-input { border:1px solid #d1d5db; border-radius:8px; padding:0.85rem 1rem; font-size:1rem; background:#fff; transition:all 0.3s ease; }
+.modern-input:focus { border-color:#4f46e5; box-shadow:0 0 0 3px rgba(79,70,229,0.08); }
+.dashboard__form__button { display:flex; flex-wrap:wrap; gap:0.75rem; }
+.dashboard__form__button .default__button { background:#4f46e5; color:#fff; padding:0.85rem 1.6rem; border-radius:8px; font-weight:500; border:none; transition:background 0.3s; }
+.dashboard__form__button .default__button:hover { background:#4338ca; }
+.image-preview { max-width:300px; height:200px; border:2px dashed #d1d5db; border-radius:8px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.image-preview img { max-width:100%; max-height:100%; object-fit:cover; }
+.dashboard__section__title { border-bottom:1px solid #eaeaea; padding-bottom:1rem; margin-bottom:2rem; }
+@media (max-width:992px) { .dashboard__form__button { flex-direction:column; align-items:stretch; } .image-preview { width:100%; } }
+@media (max-width:576px) { .modern-input { font-size:0.95rem; padding:0.75rem 0.9rem; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard sp_bottom_100">
+    <div class="container-fluid full__width__padding">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                <div class="dashboard__section__title">
+                    <h4 class="mb-0">Add Service</h4>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <form method="post" enctype="multipart/form-data" class="form-wrapper" novalidate>
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <!-- Name -->
+                                <div class="col-12 mb-4">
+                                    <label for="name" class="form-label">Service Name <span class="text-danger">*</span></label>
+                                    <input type="text" name="name" id="name" class="form-control modern-input" placeholder="Enter service name" required>
+                                </div>
+
+                                <!-- Slug -->
+                                <div class="col-12 mb-4">
+                                    <label for="slug" class="form-label">Slug <span class="text-muted">(auto-generated if empty)</span></label>
+                                    <input type="text" name="slug" id="slug" class="form-control modern-input" placeholder="url-friendly-slug">
+                                </div>
+
+                                <!-- Cover Image -->
+                                <div class="col-12 mb-4">
+                                    <label for="cover_image" class="form-label">Cover Image</label>
+                                    <input type="file" name="cover_image" id="cover_image" class="form-control modern-input" accept="image/*">
+                                    <div class="form-text">Recommended size: 800x600px. Max: 2MB</div>
+                                    <div id="coverImagePreview" class="image-preview mt-2" style="display:none;"></div>
+                                </div>
+
+                                <!-- Full Description -->
+                                <div class="col-12 mb-4">
+                                    <label for="full_description" class="form-label">Full Description <span class="text-danger">*</span></label>
+                                    <textarea name="full_description" id="full_description" class="form-control modern-input uni-description" rows="8" placeholder="Detailed description of the service..." required></textarea>
+                                </div>
+
+                                <!-- Features List -->
+                                <div class="col-12 mb-4">
+                                    <label for="features_list" class="form-label">Features List <span class="text-danger">*</span></label>
+                                    <textarea name="features_list" id="features_list" class="form-control modern-input uni-features" rows="5" placeholder="e.g. Pruning, Planting, Design (separate by commas or new lines)" required></textarea>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="col-12 mt-4">
+                                    <div class="dashboard__form__button">
+                                        <button type="submit" class="default__button">Add Service</button>
+                                        <a href="{% url 'service_list' %}" class="default__button" style="background:#6c757d;">Cancel</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let descEditor, featuresEditor;
+
+    function initCKEditor(selector) {
+        return ClassicEditor.create(document.querySelector(selector), {
+            toolbar: ['heading','|','bold','italic','link','bulletedList','numberedList','|','blockQuote','undo','redo','imageUpload']
+        }).then(editor => {
+            editor.plugins.get('FileRepository').createUploadAdapter = loader => ({
+                upload: () => loader.file.then(file => new Promise((res, rej) => {
+                    const r = new FileReader();
+                    r.onload = () => res({ default: r.result });
+                    r.onerror = e => rej(e);
+                    r.readAsDataURL(file);
+                })),
+                abort: () => {}
+            });
+            return editor;
+        }).catch(console.error);
+    }
+
+    initCKEditor('#full_description').then(e => descEditor = e);
+    initCKEditor('#features_list').then(e => featuresEditor = e);
+
+    // Image Preview
+    document.getElementById('cover_image').addEventListener('change', function () {
+        const preview = document.getElementById('coverImagePreview');
+        preview.innerHTML = '';
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => { preview.style.display = 'flex'; preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`; };
+            reader.readAsDataURL(this.files[0]);
+        } else preview.style.display = 'none';
+    });
+
+    // Validation
+    const fields = {
+        name: {
+            el: document.getElementById('name'),
+            validate: v => !v.trim() ? 'Service name is required.' : null
+        },
+        full_description: {
+            el: document.getElementById('full_description'),
+            isEditor: true,
+            getEditor: () => descEditor,
+            validate: v => !v.trim() ? 'Full description is required.' : null
+        },
+        features_list: {
+            el: document.getElementById('features_list'),
+            isEditor: true,
+            getEditor: () => featuresEditor,
+            validate: v => !v.trim() ? 'Features list is required.' : null
+        }
+    };
+
+    Object.entries(fields).forEach(([key, f]) => {
+        const err = document.createElement('div');
+        err.classList.add('text-danger', 'mt-1');
+        err.style.fontSize = '0.875rem';
+        f.el.insertAdjacentElement('afterend', err);
+        f.errEl = err;
+    });
+
+    function validateField(key) {
+        const f = fields[key];
+        let val = f.isEditor && f.getEditor() ? f.getEditor().getData().replace(/<[^>]*>/g, '').trim() : f.el.value;
+        const err = f.validate(val);
+        f.errEl.textContent = err || '';
+        f.errEl.style.display = err ? 'block' : 'none';
+        f.el.classList.toggle('field-error-border', !!err);
+        return !err;
+    }
+
+    function validateAll() { return Object.keys(fields).every(validateField); }
+
+    Object.keys(fields).forEach(key => {
+        const f = fields[key];
+        f.el.addEventListener('blur', () => validateField(key));
+        f.el.addEventListener('input', () => { if (f.errEl.textContent) validateField(key); });
+    });
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+        if (!validateAll()) {
+            e.preventDefault();
+            const first = Object.keys(fields).find(k => fields[k].errEl.textContent);
+            if (first) fields[first].el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+});
+</script>
+{% endblock %}

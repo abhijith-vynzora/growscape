@@ -1,0 +1,86 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Gallery - GrowScape{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <div class="page-header-box">
+                    <h1>Gallery</h1>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Gallery
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Gallery Section -->
+<div class="page-work">
+    <div class="container">
+
+        <!-- Category Filter -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="our-work-nav">
+                    <ul>
+                        <li>
+                            <a href="#" class="active-btn" data-filter="*">
+                                All
+                            </a>
+                        </li>
+
+                        {% for category in categories %}
+                        <li>
+                            <a href="#" data-filter=".cat-{{ category.slug }}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Images Grid -->
+        <div class="row work-item-boxes">
+
+            {% for image in gallery_images %}
+            <div class="col-lg-4 col-md-6 work-item-box
+                 {% if image.category %}cat-{{ image.category.slug }}{% endif %}">
+
+                <div class="work-item">
+                    <div class="work-image">
+                        <figure>
+                            <img src="{{ image.image.url }}" alt="">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p>No images uploaded yet.</p>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
