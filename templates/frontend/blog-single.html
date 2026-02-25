@@ -6,7 +6,8 @@
 {% block content %}
 
 <!-- Page Header Start -->
-<div class="page-header parallaxie">
+<div class="page-header parallaxie" 
+     style="background-image: url('{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'images/post-1.jpg' %}{% endif %}');">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

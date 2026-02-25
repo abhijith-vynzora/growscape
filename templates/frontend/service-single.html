@@ -6,7 +6,8 @@
 {% block content %}
 
     <!-- Page Header Start -->
-    <div class="page-header">
+    <div class="page-header" 
+         style="background-image: url('{% if service.cover_image %}{{ service.cover_image.url }}{% else %}{% static 'images/growscape2/project4.jpeg' %}{% endif %}');">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">

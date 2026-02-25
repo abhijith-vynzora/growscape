@@ -5,7 +5,7 @@
 {% block content %}
 
     <!-- Page Header Start -->
-	<div class="page-header">
+	<div class="page-header" style="background-image: url('{% static 'images/growscape2/about.jpeg' %}');">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-12">
@@ -36,7 +36,7 @@
                         <!-- About Image Start -->
                         <div class="about-img-1">
                             <figure class="image-anime reveal">
-                                <img src="{% static 'images/about-img-1.jpg' %}" alt="">
+                                <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.48.07 (2).jpeg' %}" alt="">
                             </figure>
                         </div>
                         <!-- About Image End -->
@@ -44,7 +44,7 @@
                         <!-- About Image Start -->
                         <div class="about-img-2">
                             <figure class="image-anime reveal">
-                                <img src="{% static 'images/about-img-2.jpg' %}" alt="">
+                                <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.48.08.jpeg' %}" alt="">
                             </figure>
                         </div>
                         <!-- About Image End -->
@@ -52,10 +52,10 @@
                         <!-- Company Experience Start -->
                         <div class="company-experience">
                             <div class="company-experience-counter">
-                                <h2><span class="fast-counter">10</span>+</h2>
+                                {% comment %} <h2><span class="fast-counter">10</span>+</h2> {% endcomment %}
                             </div>
                             <div class="company-experience-content">
-                                <p>years of experience</p>
+                                {% comment %} <p>years of experience</p> {% endcomment %}
                             </div>
                         </div>
                         <!-- Company Experience End -->
@@ -139,7 +139,7 @@
                     <!-- Our Vision Image Start -->
                     <div class="our-vision-image">
                         <figure class="image-anime reveal">
-                            <img src="{% static 'images/vision-image.jpg' %}" alt="">
+                            <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.47.49.jpeg' %}" alt="">
                         </figure>
                     </div>
                     <!-- Our Vision Image End -->
@@ -171,7 +171,7 @@
                     <!-- Our Mission Image Start -->
                     <div class="our-mission-image">
                         <figure class="image-anime reveal">
-                            <img src="{% static 'images/mission-image.jpg' %}" alt="">
+                            <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.47.40.jpeg' %}" alt="">
                         </figure>
                     </div>
                     <!-- Our Mission Image End -->
@@ -250,7 +250,7 @@
                         <!-- Counter Image Start -->
                         <div class="counter-image">
                             <figure class="image-anime">
-                                <img src="{% static 'images/counter-image.jpg' %}" alt="">
+                                <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.47.42 (2).jpeg' %}" alt="">
                             </figure>
                         </div>
                         <!-- Counter Image End -->
@@ -341,7 +341,7 @@
                     <!-- Why choose Image Start -->
                     <div class="why-choose-image">
                         <figure>
-                            <img src="{% static 'images/why-choose-image.png' %}" alt="">
+                            <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.48.05 (2).jpeg' %}" alt="" style="border-radius: 20px;">
                         </figure>
                     </div>
                     <!-- Why choose Image End -->
@@ -399,66 +399,92 @@
     <!-- Why choose Us Section End -->
 
     <!-- Our Testimonials Start -->
-    <div class="our-testimonials parallaxie">
-        <div class="container">
-            <div class="row align-items-start">
-                <div class="col-lg-6 col-md-9">
-                    <div class="testimonial-box">
-                        <div class="section-title">
-                            <div class="section-bg-title dark-bg-1">
-                                <span>Review</span>
-                            </div>
-                            <h3 class="wow fadeInUp">testimonials</h3>
-                            <h2 class="text-anime-style-2" data-cursor="-opaque">Our happy <span>client says</span></h2>
+<div class="our-testimonials parallaxie"
+     style="background: url('{% static "images/new/testimonials.jpg" %}') center/cover no-repeat;">
+
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-6 col-md-9">
+                <div class="testimonial-box">
+
+                    <div class="section-title">
+                        <div class="section-bg-title dark-bg-1">
+                            <span>Review</span>
                         </div>
-                        <div class="testimonial-slider">
-                            <div class="swiper">
-                                <div class="swiper-wrapper" data-cursor-text="Drag">
-                                    {% for testimonial in testimonials %}
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-header">
-                                                <div class="author-image">
-                                                    <figure class="image-anime">
-                                                        {% if testimonial.image %}
-                                                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
-                                                        {% else %}
-                                                            <img src="{% static 'images/author-1.jpg' %}" alt="{{ testimonial.name }}">
-                                                        {% endif %}
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content">
-                                                    <h3>{{ testimonial.name }}</h3>
-                                                    <p>Valued Customer</p>
-                                                </div>
+                        <h3 class="wow fadeInUp">testimonials</h3>
+                        <h2 class="text-anime-style-2">
+                            Our happy <span>client says</span>
+                        </h2>
+                    </div>
+
+                    <div class="testimonial-slider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper" data-cursor-text="Drag">
+
+                                {% for testimonial in testimonials %}
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+
+                                        <div class="testimonial-header">
+                                            <div class="author-image">
+                                                <figure class="image-anime">
+
+                                                    {% if testimonial.image %}
+                                                        <img src="{{ testimonial.image.url }}"
+                                                             alt="{{ testimonial.name }}"
+                                                             style="width:80px;height:80px;
+                                                                    object-fit:cover;
+                                                                    border-radius:50%;">
+                                                    {% else %}
+                                                        <img src="{% static 'images/author-1.jpg' %}"
+                                                             alt="{{ testimonial.name }}"
+                                                             style="width:80px;height:80px;
+                                                                    object-fit:cover;
+                                                                    border-radius:50%;">
+                                                    {% endif %}
+
+                                                </figure>
                                             </div>
-                                            <div class="testimonial-content">
-                                                <p>{{ testimonial.review|safe }}</p>
+
+                                            <div class="author-content">
+                                                <h3>{{ testimonial.name }}</h3>
+                                                <p>Valued Customer</p>
                                             </div>
                                         </div>
+
+                                        <div class="testimonial-content">
+                                            <p>{{ testimonial.review|safe }}</p>
+                                        </div>
+
                                     </div>
-                                    {% empty %}
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-content">
-                                                <p>No testimonials yet.</p>
-                                            </div>
+                                </div>
+                                {% empty %}
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-content">
+                                            <p>No testimonials yet.</p>
                                         </div>
                                     </div>
-                                    {% endfor %}
                                 </div>
-                                <div class="testimonial-btn">
-                                    <div class="testimonial-button-prev"></div>
-                                    <div class="testimonial-button-next"></div>
-                                </div>
+                                {% endfor %}
+
                             </div>
+
+                            <div class="testimonial-btn">
+                                <div class="testimonial-button-prev"></div>
+                                <div class="testimonial-button-next"></div>
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- Our Testimonials End -->
+
+</div>
+<!-- Our Testimonials End -->
     <!-- Our Faqs Section Start -->
     <div class="our-faqs">
         <div class="container">

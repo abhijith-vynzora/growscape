@@ -4400,6 +4400,7 @@ header.main-header .header-sticky.active {
 
 	.why-choose-image img {
 		max-width: 55%;
+		border-radius: 20px;
 	}
 
 	.why-choose-us::before {
