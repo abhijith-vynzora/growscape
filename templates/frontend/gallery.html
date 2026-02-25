@@ -5,9 +5,7 @@
 
 {% block content %}
 
-<!-- Page Header -->
 <div class="page-header" style="background-image: url('{% static 'images/growscape2/project.jpeg' %}');">
-
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-12">
@@ -29,12 +27,9 @@
     </div>
 </div>
 
-
-<!-- Gallery Section -->
 <div class="page-work">
     <div class="container">
 
-        <!-- Category Filter -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="our-work-nav">
@@ -47,7 +42,7 @@
 
                         {% for category in categories %}
                         <li>
-                            <a href="#" data-filter=".cat-{{ category.slug }}">
+                            <a href="#" data-filter=".cat-{{ category.id }}">
                                 {{ category.name }}
                             </a>
                         </li>
@@ -57,18 +52,14 @@
             </div>
         </div>
 
-
-        <!-- Images Grid -->
         <div class="row work-item-boxes">
 
             {% for image in gallery_images %}
-            <div class="col-lg-4 col-md-6 work-item-box
-                 {% if image.category %}cat-{{ image.category.slug }}{% endif %}">
-
+            <div class="col-lg-4 col-md-6 work-item-box cat-{{ image.category.id }}">
                 <div class="work-item">
                     <div class="work-image">
                         <figure>
-                            <img src="{{ image.image.url }}" alt="">
+                            <img src="{{ image.image.url }}" alt="{{ image.title }}">
                         </figure>
                     </div>
                 </div>
