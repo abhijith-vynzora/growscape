@@ -890,7 +890,7 @@
     </div> {% endcomment %}
     <!-- Our Pricing Section End -->
 
-    <!-- Our Blog Section Start -->
+    {% comment %} <!-- Our Blog Section Start -->
 <div class="our-blog">
     <div class="container">
 
@@ -941,14 +941,14 @@
                             <a href="{% url 'public_blog_list' %}">
                                 {{ blog.category.name|default:"General" }}
                             </a>
-                        </div> {% endcomment %}
+                        </div> 
                     </div>
 
                     <div class="article-body">
                         <div class="article-meta">
                             <ul>
                                 <li>{{ blog.created_at|date:"d M Y" }}</li>
-                                {% comment %} <li>{{ blog.category.name|default:"General" }}</li> {% endcomment %}
+                                 <li>{{ blog.category.name|default:"General" }}</li> 
                             </ul>
                         </div>
 
@@ -1021,6 +1021,142 @@
 
     </div>
 </div>
-<!-- Our Blog Section End -->
+<!-- Our Blog Section End --> {% endcomment %}
+
+<div class="our-blog">
+    <div class="container">
+
+        <div class="row section-row align-items-center">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <div class="section-bg-title">
+                        <span>Our Blog</span>
+                    </div>
+                    <h3 class="wow fadeInUp">blog post</h3>
+                    <h2 class="text-anime-style-2">
+                        Latest news and tips 
+                        <span>for garden landscaping</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="section-title-content wow fadeInUp">
+                    <p>
+                        Stay updated with the latest tips, trends,
+                        and inspiration in garden landscaping.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% if blogs %}
+        <div class="row">
+
+            <div class="col-lg-6">
+                {% with blog=blogs.0 %}
+                <div class="highlighted-article-post wow fadeInUp">
+
+                    <div class="highlighted-article-featured-img">
+                        <figure>
+                            <a href="{% url 'blog_detail' blog.slug %}">
+                                {% if blog.image %}
+                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                                {% else %}
+                                    <img src="{% static 'images/post-1.jpg' %}" alt="">
+                                {% endif %}
+                            </a>
+                        </figure>
+                    </div>
+
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <ul>
+                                <li>{{ blog.created_at|date:"d M Y" }}</li>
+                            </ul>
+                        </div>
+
+                        <div class="article-content">
+                            <h2>
+                                <a href="{% url 'blog_detail' blog.slug %}">
+                                    {{ blog.title }}
+                                </a>
+                            </h2>
+                            <p>
+                                {{ blog.description|striptags|truncatewords:20 }}
+                            </p>
+                        </div>
+
+                        <div class="article-btn">
+                            <a href="{% url 'blog_detail' blog.slug %}" class="btn-default">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                {% endwith %}
+            </div>
+
+            <div class="col-lg-6">
+                <div class="our-article-box">
+
+                    {% for blog in blogs|slice:"1:" %}
+                    <div class="highlighted-article-post wow fadeInUp">
+
+                        <div class="highlighted-article-featured-img">
+                            <figure>
+                                <a href="{% url 'blog_detail' blog.slug %}">
+                                    {% if blog.image %}
+                                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                                    {% else %}
+                                        <img src="{% static 'images/post-1.jpg' %}" alt="">
+                                    {% endif %}
+                                </a>
+                            </figure>
+                        </div>
+
+                        <div class="article-body">
+                            <div class="article-meta">
+                                <ul>
+                                    <li>{{ blog.created_at|date:"d M Y" }}</li>
+                                </ul>
+                            </div>
+
+                            <div class="article-content">
+                                <h2>
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        {{ blog.title }}
+                                    </a>
+                                </h2>
+                                <p>
+                                    {{ blog.description|striptags|truncatewords:20 }}
+                                </p>
+                            </div>
+
+                            <div class="article-btn">
+                                <a href="{% url 'blog_detail' blog.slug %}" class="btn-default">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>No blog posts available at the moment.</p>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
 
 {% endblock %}
