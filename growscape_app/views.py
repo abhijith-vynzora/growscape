@@ -14,6 +14,10 @@ from .models import Service, Project, TeamMember, Blog, Testimonial, Category, G
 # Import your forms
 from .forms import ServiceForm, ProjectForm, TeamMemberForm, BlogForm, TestimonialForm, CategoryForm, GalleryImageForm, ContactForm, ServiceInquiryForm
 
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+from django.core.mail import EmailMultiAlternatives
 # ==========================================
 # 1. ADMIN AUTHENTICATION
 # ==========================================
@@ -599,29 +603,132 @@ def contact(request):
 
     return render(request, "frontend/contact.html")
 
+# def service_inquiry(request):
+#     services = Service.objects.all()
+#     if request.method == 'POST':
+#         first_name = request.POST.get('first_name', '').strip()
+#         last_name = request.POST.get('last_name', '').strip()
+#         email = request.POST.get('email', '').strip()
+#         phone = request.POST.get('phone', '').strip()
+#         service_id = request.POST.get('service_type')
+#         preferred_date = request.POST.get('preferred_date') or None
+#         location = request.POST.get('location', '').strip()
+#         message = request.POST.get('message', '').strip()
+
+#         ServiceInquiry.objects.create(
+#             first_name=first_name,
+#             last_name=last_name,
+#             email=email,
+#             phone=phone,
+#             service_type_id=service_id or None,
+#             preferred_date=preferred_date,
+#             location=location,
+#             message=message,
+#         )
+#         messages.success(request, "Your inquiry has been submitted! We'll contact you shortly.")
+#         return redirect('service_inquiry')
+
+#     return render(request, "frontend/service-inquiry.html", {"services": services})
+
+
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
 def service_inquiry(request):
     services = Service.objects.all()
     if request.method == 'POST':
+        # 1. Capture Form Data
         first_name = request.POST.get('first_name', '').strip()
         last_name = request.POST.get('last_name', '').strip()
-        email = request.POST.get('email', '').strip()
+        email_address = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
         service_id = request.POST.get('service_type')
-        preferred_date = request.POST.get('preferred_date') or None
         location = request.POST.get('location', '').strip()
         message = request.POST.get('message', '').strip()
 
-        ServiceInquiry.objects.create(
+        # 2. Save to Database
+        inquiry = ServiceInquiry.objects.create(
             first_name=first_name,
             last_name=last_name,
-            email=email,
+            email=email_address,
             phone=phone,
             service_type_id=service_id or None,
-            preferred_date=preferred_date,
             location=location,
             message=message,
         )
-        messages.success(request, "Your inquiry has been submitted! We'll contact you shortly.")
+
+        # 3. Email Logic using your exact requested style
+        service_title = inquiry.service_type.name if inquiry.service_type else "General Service"
+        subject = "New Service Inquiry"
+
+        html_message = f"""
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, sans-serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="background:#2D4636; padding:30px; text-align:center;">
+                            <h2 style="margin:0; color:#ffffff;">New Service Inquiry</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:30px;">
+                            <p style="color:#555; font-size:15px;">A new inquiry has been submitted through the Growscape website.</p>
+                            <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e0e0e0; border-radius:6px;">
+                                <tr>
+                                    <td style="padding:12px; font-weight:bold;">Full Name</td>
+                                    <td style="padding:12px;">{first_name} {last_name}</td>
+                                </tr>
+                                <tr style="background:#f8f9fa;">
+                                    <td style="padding:12px; font-weight:bold;">Email</td>
+                                    <td style="padding:12px;">{email_address}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:12px; font-weight:bold;">Mobile</td>
+                                    <td style="padding:12px;">{phone}</td>
+                                </tr>
+                                <tr style="background:#f8f9fa;">
+                                    <td style="padding:12px; font-weight:bold;">Service</td>
+                                    <td style="padding:12px;">{service_title}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:12px; font-weight:bold;">Location</td>
+                                    <td style="padding:12px;">{location}</td>
+                                </tr>
+                            </table>
+                            <p style="margin-top:20px;"><b>Message:</b> {message}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background:#f8f9fa; padding:20px; text-align:center;">
+                            <p style="margin:0; font-size:13px; color:#888;">Growscape Landscaping LLC</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+"""
+        plain_message = strip_tags(html_message)
+        email = EmailMultiAlternatives(
+            subject,
+            plain_message,
+            settings.EMAIL_HOST_USER,
+            ['theofaber26@gmail.com'],
+        )
+        email.attach_alternative(html_message, "text/html")
+        email.send(fail_silently=False)
+
+        messages.success(request, "Your inquiry has been submitted!")
         return redirect('service_inquiry')
 
     return render(request, "frontend/service-inquiry.html", {"services": services})

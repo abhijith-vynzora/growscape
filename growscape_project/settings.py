@@ -132,3 +132,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media Files (User Uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+#email
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'theofaber26@gmail.com'
+EMAIL_HOST_PASSWORD = 'ccfo vfbj bwnz esiv'
+DEFAULT_FROM_EMAIL = 'Growscape Landscaping <theofaber26@gmail.com>'

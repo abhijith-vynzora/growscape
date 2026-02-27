@@ -3,6 +3,7 @@
 {% block title %}Our Services - GrowScape{% endblock %}
 {% block content %}
 
+
     <!-- Page Header Start -->
     <div class="page-header" style="background-image: url('{% static 'images/growscape2/project11.jpeg' %}');">
 
@@ -25,9 +26,49 @@
     <!-- Page Header End -->
 
     <!-- Page Services Start -->
+    <style>
+        /* Only apply these styles on mobile/tablet devices (under 991px) */
+        @media (max-width: 991px) {
+            .mobile-scroll-container {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                gap: 20px;
+                padding-bottom: 30px; /* Space for scroll / shadow */
+                
+                /* Enable smooth snapping */
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                
+                /* Remove default Bootstrap row margins that cause horizontal scroll issues */
+                margin-right: -15px; 
+                margin-left: -15px;
+                padding-left: 15px; /* Add padding so first item isn't flush with edge */
+                padding-right: 15px;
+            }
+
+            /* Hide scrollbar for Chrome/Safari/Opera */
+            .mobile-scroll-container::-webkit-scrollbar {
+                display: none;
+            }
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .mobile-scroll-container {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            /* Force the columns to become carousel cards */
+            .mobile-scroll-container .col-lg-4 {
+                flex: 0 0 85%; /* Shows 85% of the card so users see the next one peeking */
+                max-width: 85%;
+                scroll-snap-align: center; /* Snaps the card to the center of screen */
+            }
+        }
+    </style>
+
     <div class="page-services">
         <div class="container">
-            <div class="row">
+            <div class="row mobile-scroll-container">
                 {% for service in services %}
                 <div class="col-lg-4 col-md-6">
                     <div class="service-item wow fadeInUp" {% if not forloop.first %}data-wow-delay="0.{{ forloop.counter0 }}s"{% endif %}>
