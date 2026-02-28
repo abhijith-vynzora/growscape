@@ -138,7 +138,7 @@
     overflow: hidden;
 }
 
-.hero-slide img {
+ .hero-slide img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
@@ -146,7 +146,7 @@
     position: absolute;
     top: 0;
     left: 0;
-}
+} 
 
 @media (max-width: 991px) {
     .hero-slide {
@@ -182,6 +182,10 @@
 .whatsapp-float i {
     color: #FFF;
 }
+
+.logo-desktop {
+    filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 1));
+}
     </style>
    
 <body>
@@ -190,7 +194,7 @@
     <div class="preloader">
         <div class="loading-container">
             <div id="loading-icon">
-                <img src="{% static 'loader.png' %}" alt="Loading...">
+                <img src="{% static 'png-logo.png' %}" alt="Loading...">
             </div>
         </div>
     </div>
@@ -221,8 +225,8 @@
 
                     <!-- Logo Start -->
                     <a class="navbar-brand" href="{% url 'home' %}">
-                        <img src="{% static 'logo.webp' %}" alt="GrowScape" class="logo-mobile">
-                        <img src="{% static 'logo-white.png' %}" alt="GrowScape" class="logo-desktop">
+                        <img src="{% static 'new-logo-green.png' %}" alt="GrowScape" class="logo-mobile">
+                        <img src="{% static 'new-logo-white.png' %}" alt="GrowScape" class="logo-desktop">
                     </a>
                     <!-- Logo End -->
 
@@ -307,7 +311,7 @@
                     <div class="about-footer">
                         <div class="footer-logo">
                            
-                            <img src="{% static 'logo-white.png' %}" alt="GrowScape" >
+                            <img src="{% static 'new-logo-white.png' %}" alt="GrowScape" >
                         </div>
                         <div class="about-footer-content">
                             <p>Transforming outdoor spaces into beautiful, functional landscapes tailored to your vision.</p>

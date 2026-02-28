@@ -43,30 +43,20 @@
 
 
 	/* Hero Slider Layout JS */
-	/* Hero Slider Layout JS */
 	const hero_slider_layout = new Swiper('.hero-slider-layout .swiper', {
 		slidesPerView: 1,
+		speed: 1000,
 		spaceBetween: 0,
 		loop: true,
-		speed: 1000,
-		centeredSlides: true,
-		loopAdditionalSlides: 4, // Must match your total slide count
-
 		autoplay: {
 			delay: 4000,
-			disableOnInteraction: false,
 		},
 		pagination: {
 			el: '.hero-pagination',
 			clickable: true,
 		},
-
-		on: {
-			init: function () {
-				this.update(); // Force recalculation on init
-			}
-		}
 	});
+
 
 	/* testimonial Slider JS */
 	if ($('.testimonial-slider').length) {
