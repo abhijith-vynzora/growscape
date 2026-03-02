@@ -13,6 +13,24 @@ Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor de
         object-fit: cover;
         border-radius: 20px;
     }
+    /* General mobile styles (below 767px) */
+@media only screen and (max-width: 767px) {
+    .why-choose-image img {
+        max-width: 90%; /* Increased from 65% to fill the screen better */
+        height: auto;    /* Allow height to scale proportionally */
+        border-radius: 20px;
+        display: block;
+        margin: 0 auto;  /* Centers the image */
+    }
+}
+
+/* Tablet styles (between 768px and 991px) */
+@media only screen and (max-width: 991px) {
+    .why-choose-image img {
+        max-width: 80%; /* Increased from 55% */
+        height: auto;
+    }
+}
 </style>
     <!-- Hero Section Start -->
     <div class="hero hero-slider">
