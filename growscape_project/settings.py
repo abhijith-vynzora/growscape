@@ -137,9 +137,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # settings.py
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com' 
+
+EMAIL_HOST = 'smtp.zoho.in'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'theofaber26@gmail.com'
-EMAIL_HOST_PASSWORD = 'ccfo vfbj bwnz esiv'
-DEFAULT_FROM_EMAIL = 'Growscape Landscaping <theofaber26@gmail.com>'
+
+EMAIL_HOST_USER = 'info@growscape.ae'
+EMAIL_HOST_PASSWORD = 'JPPaNwtfh84J'
+
+DEFAULT_FROM_EMAIL = 'Growscape Landscaping <info@growscape.ae>'

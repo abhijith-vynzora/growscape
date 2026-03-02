@@ -723,7 +723,7 @@ def service_inquiry(request):
             subject,
             plain_message,
             settings.EMAIL_HOST_USER,
-            ['theofaber26@gmail.com'],
+            ['info@growscape.ae']
         )
         email.attach_alternative(html_message, "text/html")
         email.send(fail_silently=False)
