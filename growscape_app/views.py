@@ -741,3 +741,6 @@ def gallery(request):
         "categories": categories,
         "gallery_images": gallery_images,
     })
+
+def custom_404(request, exception):
+    return render(request, 'frontend/404.html', status=404)

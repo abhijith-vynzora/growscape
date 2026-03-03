@@ -2,7 +2,20 @@
 {% load static %}
 {% block title %}Page Not Found - GrowScape{% endblock %}
 {% block content %}
-
+<style>
+    nav, header, footer, .footer-section, .header-area {
+        display: none !important;
+    }
+    
+    /* Ensures the error message stays centered on the screen */
+    .error-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+</style>
     <!-- error section start -->
     <div class="error-page">
         <div class="container">
