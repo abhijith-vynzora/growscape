@@ -131,7 +131,8 @@
     .sub-menu .nav-link:hover {
         color: #fff !important;
     }
-    .hero-slide {
+
+    {% comment %} .hero-slide {
     height: 100vh;
     min-height: 600px;
     position: relative;
@@ -153,8 +154,41 @@
         height: 70vh;
         min-height: 450px;
     }
+} {% endcomment %}
+
+.hero-slide {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
 }
 
+.hero-slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+} 
+
+/* Remove the margin-top compensation for hero */
+.hero {
+    margin-top: 0 !important;
+}
+
+@media (max-width: 991px) {
+    .hero-slide {
+        height: 70vh;
+        min-height: 450px;
+    }
+    
+    /* Keep margin-top only on mobile */
+    .hero {
+        margin-top: 80px !important;
+    }
+}
 .whatsapp-float {
     position: fixed;
     width: 60px;
