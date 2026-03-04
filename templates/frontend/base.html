@@ -186,6 +186,121 @@
 .logo-desktop {
     filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 1));
 }
+/* Apply the specific dark green to the mobile menu bar */
+.slicknav_menu {
+    background: #0B3D2C !important;
+}
+
+/* Ensure the dropdown menu background also matches */
+.slicknav_nav {
+    background: #0B3D2C !important;
+}
+.sub-menu {
+    background-color: #0B3D2C !important;
+}
+
+/* Ensure links inside the dropdown are white */
+.sub-menu li a {
+    color: #ffffff !important;
+}
+
+/* Desktop-only transparent navbar with scroll effect */
+@media (min-width: 992px) {
+    .main-header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .header-sticky {
+        position: static;
+    }
+    
+    /* Transparent state (at top of page) */
+    .main-header:not(.scrolled) {
+        background-color: transparent !important;
+    }
+    
+    /* White state (after scrolling) */
+    .main-header.scrolled {
+        background-color: #ffffff !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Reduce navbar height */
+    .main-header .navbar {
+        padding: 10px 0;
+    }
+    
+    /* Logo switching */
+    .main-header:not(.scrolled) .logo-desktop-white { display: block !important; }
+    .main-header:not(.scrolled) .logo-desktop-green { display: none !important; }
+    .main-header.scrolled .logo-desktop-white { display: none !important; }
+    .main-header.scrolled .logo-desktop-green { display: block !important; }
+    
+    /* Nav link colors - white when transparent */
+    .main-header:not(.scrolled) .nav-link {
+        color: #ffffff !important;
+    }
+    
+    /* Nav link colors - black when scrolled */
+    .main-header.scrolled .nav-link {
+        color: #0b3d2c !important;
+    }
+    
+    {% comment %} /* Booking button when scrolled */
+    .main-header.scrolled .booking-btn {
+        background-color: #0b3d2c;
+        color: #fff;
+    }
+    
+    /* Booking button when transparent - white outline style */
+    .main-header:not(.scrolled) .booking-btn {
+        background-color: transparent;
+        color: #fff;
+        border: 2px solid #fff;
+    } {% endcomment %}
+}
+/* Desktop submenu fixes for scrolled state */
+@media (min-width: 992px) {
+    /* Ensure submenu appears above everything */
+    .main-header .submenu {
+        position: relative;
+    }
+    
+    .main-header .sub-menu {
+        z-index: 10000;
+        background-color: #0B3D2C !important;
+    }
+    
+    /* Submenu links stay white always */
+    .main-header .sub-menu .nav-link {
+        color: #ffffff !important;
+    }
+    
+    .main-header.scrolled .sub-menu .nav-link {
+        color: #ffffff !important;
+    }
+    
+    /* Hover state for submenu */
+    .main-header .sub-menu .nav-link:hover {
+        color: #fff !important;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+.page-header {
+    padding: 280px 0 150px;
+}
+
+@media (max-width: 991px) {
+    .page-header {
+        padding: 200px 0 100px;
+    }
+}
+
     </style>
    
 <body>
@@ -213,7 +328,12 @@
             0%   { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .logo-desktop {
+            filter: none;
+        }
+        
     </style>
+    
     <!-- Preloader End -->
 
     <!-- Header Start -->
@@ -226,7 +346,8 @@
                     <!-- Logo Start -->
                     <a class="navbar-brand" href="{% url 'home' %}">
                         <img src="{% static 'new-logo-green.png' %}" alt="GrowScape" class="logo-mobile">
-                        <img src="{% static 'new-logo-white.png' %}" alt="GrowScape" class="logo-desktop">
+                        <img src="{% static 'new-logo-white.png' %}" alt="GrowScape" class="logo-desktop logo-desktop-white">
+                        <img src="{% static 'new-logo-green.png' %}" alt="GrowScape" class="logo-desktop logo-desktop-green">
                     </a>
                     <!-- Logo End -->
 
@@ -271,13 +392,20 @@
                                     <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                                 </li>
                     
-                                <li class="nav-item d-lg-none" style="margin-top: 10px;">
+                                {% comment %} <li class="nav-item d-lg-none" style="margin-top: 10px;">
                                     <a class="nav-link" href="{% url 'service_inquiry' %}" 
                                        style="background-color: #0b3d2c; color: #ffffff !important; font-weight: 700; padding: 10px 20px; border-radius: 8px; text-align: center;">
                                        Book Now
                                     </a>
                                 </li>
-                    
+                     {% endcomment %}
+
+                     <li class="nav-item d-lg-none" style="margin-top: 10px;">
+                        <a class="nav-link" href="{% url 'service_inquiry' %}" 
+                           style="background-color: #ffffff; color: #0b3d2c !important; font-weight: 700; padding: 10px 20px; border-radius: 8px; text-align: center; display: block;">
+                           Book Now
+                        </a>
+                    </li>
                             </ul>
                         </div>
                     
@@ -319,7 +447,11 @@
                         <div class="footer-social-links">
                             <ul>
                                 <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li>
+                                    <a href="https://www.instagram.com/growscape.uae/" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
                                 <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
                             </ul>
@@ -343,7 +475,7 @@
                 </div>
     
                 <!-- Working Hours -->
-                <div class="col-lg-3 col-md-4 col-6">
+                {% comment %} <div class="col-lg-3 col-md-4 col-6">
                     <div class="working-hour">
                         <h3>working hours</h3>
                         <div class="working-hour-box">
@@ -359,6 +491,23 @@
                             <p>10.00 - 18.00</p>
                         </div>
                     </div>
+                </div> {% endcomment %}
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="working-hour">
+                        <h3>working hours</h3>
+                        <div class="working-hour-box">
+                            <p>Monday - Friday</p>
+                            <p>08:00 AM - 05:00 PM</p>
+                        </div>
+                        <div class="working-hour-box">
+                            <p>Saturday</p>
+                            <p>08:00 AM - 05:00 PM (Site Only)</p>
+                        </div>
+                        <div class="working-hour-box">
+                            <p>Sunday</p>
+                            <p>Closed</p>
+                        </div>
+                    </div>
                 </div>
     
                 <!-- Footer Contact -->
@@ -366,13 +515,13 @@
                     <div class="footer-contact">
                         <div class="footer-info-box">
                             <h3>address</h3>
-                            <p>Dubai, United Arab Emirates</p>
+                            <p>Probox Business Center, Dubai, United Arab Emirates</p>
                         </div>
                         <div class="footer-info-box">
                             <h3>contact</h3>
                             <p><a href="tel:+971566032544">+971 56 603 2544</a></p>
                             <p><a href="tel:+971566032354">+971 56 603 2354</a></p>
-                            <p><a href="mailto:growscape.uae@outlook.com">growscape.uae@outlook.com</a></p>
+                            <p><a href="mailto:info@growscape.ae">info@growscape.ae</a></p>
                         </div>
                     </div>
                 </div>
@@ -422,8 +571,33 @@
 
     <!-- WhatsApp Float Button -->
     <!-- WhatsApp Float Button -->
-    <a href="https://api.whatsapp.com/send?phone=971566032544" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://api.whatsapp.com/send?phone=971566032354" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script>
+        // Desktop-only scroll effect for navbar
+        if (window.innerWidth >= 992) {
+            const header = document.querySelector('.main-header');
+            const hasHero = document.querySelector('.hero-slide') !== null;
+            const hasPageHeader = document.querySelector('.page-header') !== null;
+            
+            // If page has neither hero nor page-header, make navbar white immediately
+            if (!hasHero && !hasPageHeader) {
+                header.classList.add('scrolled');
+            }
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    // Only remove 'scrolled' class if page has hero or page-header
+                    if (hasHero || hasPageHeader) {
+                        header.classList.remove('scrolled');
+                    }
+                }
+            });
+        }
+        </script>
 </body>
 </html>

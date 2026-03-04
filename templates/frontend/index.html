@@ -31,6 +31,62 @@ Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor de
         height: auto;
     }
 }
+/* Mobile Hero Slider Fixes */
+@media (max-width: 768px) {
+
+    /* 1. Lift the entire content up to clear the dots */
+    .hero-slide .container {
+        padding-bottom: 80px !important; /* Adds space at the bottom for the dots */
+    }
+
+    /* 2. Flexbox container to force buttons side-by-side and aligned */
+    .hero-content-body {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important; /* Vertically aligns them */
+        justify-content: flex-start !important; /* Aligns them to the left */
+        gap: 10px !important; /* Consistent space between buttons */
+        margin-top: 20px !important;
+        flex-wrap: nowrap !important; /* Prevents the second button from dropping */
+    }
+
+    /* 3. Resize buttons to fit perfectly on small screens */
+    .hero-content-body .btn-default {
+        padding: 10px 14px !important; /* Compact padding */
+        font-size: 13px !important;    /* Readable but smaller text */
+        height: 42px !important;       /* Fixed height so both buttons match */
+        line-height: 42px !important;  /* Vertically centers text */
+        display: inline-flex !important;
+        align-items: center !important; 
+        justify-content: center !important;
+        width: auto !important;        /* Prevents full width */
+        margin: 0 !important;          /* Removes random margins */
+        white-space: nowrap !important; /* Stops text breaking */
+    }
+    
+}
+/* Mobile View Spacing Fix */
+@media (max-width: 768px) {
+    
+    .hero-content-body {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Target the FIRST button and push the second one away */
+    .hero-content-body .btn-default:first-child {
+        margin-right: 15px !important; 
+    }
+
+    /* Ensure the buttons don't have other random margins interfering */
+    .hero-content-body .btn-default {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+    }
+}
 </style>
     <!-- Hero Section Start -->
     <div class="hero hero-slider">
@@ -74,7 +130,7 @@ Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor de
                                             <div class="section-title">
                                                 <h3 class="wow fadeInUp">Creative Design</h3>
                                                 <h1 class="text-anime-style-2" data-cursor="-opaque"><span>Designs Tailored</span> to <span>Your Lifestyle</span></h1>
-                                                <p class="wow fadeInUp" data-wow-delay="0.25s">Our expert team uses modern methods and premium materials to create unique, nature-inspired outdoor experiences. From 3D visualization to plant layout, we bring your dream landscape to life.</p>
+                                                <p class="wow fadeInUp" data-wow-delay="0.25s">Transforming your outdoors into lush, living sanctuaries for villas and businesses. We are your dedicated experts for sustainable, premium landscaping design and care in the UAE</p>
                                             </div>
                                             <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
                                                 <a href="{% url 'portfolio' %}" class="btn-default">view gallery</a>
@@ -100,7 +156,7 @@ Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor de
                                             <div class="section-title">
                                                 <h3 class="wow fadeInUp">Pools & Hardscaping</h3>
                                                 <h1 class="text-anime-style-2" data-cursor="-opaque"><span>Custom</span> pools and <span>stylish structures</span></h1>
-                                                <p class="wow fadeInUp" data-wow-delay="0.25s">Enhance your property with custom swimming pool solutions and strong, stylish hardscapes. From patios and decks to walkways, we define your outdoor space with elegance.</p>
+                                                <p class="wow fadeInUp" data-wow-delay="0.25s">We craft and care for exceptional outdoor spaces, serving residential and commercial clients alike. Count on us for sustainable, high-quality landscaping solutions throughout the Emirates.</p>
                                             </div>
                                             <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
                                                 <a href="{% url 'services' %}" class="btn-default">view services</a>
@@ -186,72 +242,90 @@ Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor de
     <!-- Customer Review Section End -->
 
     <!-- About Us Section Start -->
-    <div class="about-us">
+    <div class="about-us page-about">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
+                    <!-- About Us Image Start -->
                     <div class="about-image">
+                        <!-- About Image Start -->
                         <div class="about-img-1">
                             <figure class="image-anime reveal">
-                                <img src="{% static 'images/new/wp1.webp' %}" alt="">
+                                <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.48.07 (2).jpeg' %}" alt="">
                             </figure>
                         </div>
+                        <!-- About Image End -->
+    
+                        <!-- About Image Start -->
                         <div class="about-img-2">
                             <figure class="image-anime reveal">
-                                <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.48.05 (2).jpeg' %}" alt="">
+                                <img src="{% static 'images/growscape_images/WhatsApp Image 2026-02-24 at 14.48.08.jpeg' %}" alt="">
                             </figure>
                         </div>
+                        <!-- About Image End -->
+    
+                        <!-- Company Experience Start -->
                         <div class="company-experience">
                             <div class="company-experience-counter">
-                                {% comment %} <h2><span class="counter">20</span>+</h2> {% endcomment %}
+                                {% comment %} <h2><span class="fast-counter">10</span>+</h2> {% endcomment %}
                             </div>
                             <div class="company-experience-content">
                                 {% comment %} <p>years of experience</p> {% endcomment %}
                             </div>
                         </div>
+                        <!-- Company Experience End -->
                     </div>
+                    <!-- About Us Image End -->
                 </div>
+    
                 <div class="col-lg-6">
+                    <!-- About Us Content Start -->
                     <div class="about-us-content">
+                        <!-- Section Title Start -->
                         <div class="section-title">
                             <div class="section-bg-title">
                                 <span>about us</span>
                             </div>
                             <h3 class="wow fadeInUp">About Us</h3>
                             <h2 class="text-anime-style-2" data-cursor="-opaque">Sowing dreams<span>, growing landscapes</span></h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">We transform your landscaping dreams into reality, crafting beautiful, tranquil outdoor spaces that reflect your vision and enhance your lifestyle. Let us grow beauty and joy in every garden.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Growscape Landscaping offers expert services in gardens, pools, fountains, pergolas, and patios, delivering quality, care, and attention to every detail</p>
                         </div>
+                        <!-- Section Title End -->
+    
+                        <!-- About Us Body Start -->
                         <div class="about-us-body wow fadeInUp" data-wow-delay="0.5s">
                             <ul>
-                                <li>Experienced Garden Landscaping</li>
-                                <li>Professional Team of Experts</li>
-                                <li>We Adapt to Your Needs</li>
-                                <li>Quality Craftsmanship Guaranteed</li>
+                                <li>We Are Experience Gardeing</li>
+                                <li>We Are Experience Gardeing</li>
+                                <li>We  Adapt Your Need</li>
+                                <li>We  Adapt Your Need</li>
                             </ul>
                         </div>
+                        <!-- About Us Body End -->
+    
+                        <!-- About Us Footer Start -->
                         <div class="about-us-footer wow fadeInUp" data-wow-delay="0.75s">
-                            <div class="about-company-founder">
-                                <div class="company-founder-image">
-                                    <figure class="image-anime">
-                                        <img src="{% static 'images/about-company-founder-img.jpg' %}" alt="">
-                                    </figure>
-                                </div>
-                                <div class="company-founder-content">
-                                    <h3>GrowScape Team</h3>
-                                    <p>CEO & Founder</p>
-                                </div>
+                            <!-- Booking Button Start -->
+                            <div class="about-booking-box">
+                                <a href="{% url 'service_inquiry' %}" class="btn-default">Book A Site Visit</a>
                             </div>
+                            <!-- Booking Button End -->
+    
+                            <!-- Contact Now Box Start -->
                             <div class="contact-now-box about-contact-box">
                                 <div class="icon-box">
                                     <img src="{% static 'images/icon-phone.svg' %}" alt="">
                                 </div>
                                 <div class="contact-now-box-content">
                                     <p>call us any time</p>
-                                    <h3>+971 56 603 2354</h3>
+                                    <h3>+971 56 603 2354</h3>                                
                                 </div>
                             </div>
+                            <!-- Contact Now Box End -->
                         </div>
+                        <!-- About Us Footer End -->
                     </div>
+                    <!-- About Us Content End -->
                 </div>
             </div>
         </div>
