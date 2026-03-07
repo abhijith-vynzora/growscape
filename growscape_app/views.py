@@ -22,6 +22,9 @@ from django.core.mail import EmailMultiAlternatives
 # 1. ADMIN AUTHENTICATION
 # ==========================================
 
+def index_redirect(request):
+    return redirect('home')
+
 def admin_login(request):
     if request.method == "POST":
         username = request.POST.get("username")

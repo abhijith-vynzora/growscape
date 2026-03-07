@@ -74,6 +74,8 @@ urlpatterns = [
     path('team/', views.team_page, name='public_team'), 
     path('contact/', views.contact, name='contact'),
     path("gallery/", views.gallery, name="gallery"),
+
+    path('index.html/', views.index_redirect), 
 ]
 
 if settings.DEBUG:
