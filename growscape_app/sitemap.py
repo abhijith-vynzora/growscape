@@ -2,7 +2,6 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from .models import Blog, Service, Project
 
-SITE_DOMAIN = "https://growscape.ae"
 
 class StaticViewSitemap(Sitemap):
     protocol = "https"
@@ -11,10 +10,10 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         return [
-            "home", "about", "services", "portfolio", "gallery", 
+            "home", "about", "services", "portfolio", "gallery",
             "contact", "service_inquiry", "public_blog_list", "public_team"
         ]
-    
+
     def location(self, item):
         return reverse(item)
 
@@ -27,7 +26,7 @@ class BlogSitemap(Sitemap):
         return Blog.objects.all()
 
     def location(self, obj):
-        return f"{SITE_DOMAIN}{reverse('blog_detail', kwargs={'slug': obj.slug})}"
+        return reverse('blog_detail', kwargs={'slug': obj.slug})
 
 
 class ServiceSitemap(Sitemap):
@@ -38,7 +37,7 @@ class ServiceSitemap(Sitemap):
         return Service.objects.all()
 
     def location(self, obj):
-        return f"{SITE_DOMAIN}{reverse('service_detail', kwargs={'slug': obj.slug})}"
+        return reverse('service_detail', kwargs={'slug': obj.slug})
 
 
 class ProjectSitemap(Sitemap):
@@ -49,4 +48,4 @@ class ProjectSitemap(Sitemap):
         return Project.objects.all()
 
     def location(self, obj):
-        return f"{SITE_DOMAIN}{reverse('project_detail', kwargs={'pk': obj.pk})}"
+        return reverse('project_detail', kwargs={'pk': obj.pk})
