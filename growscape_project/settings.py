@@ -24,11 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b65#8gv2hy38f@@y$ex=iaq+gq-vo0@6zdw)qt4tkes5b8d=81'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
-
+ALLOWED_HOSTS = [
+    "13.49.44.122",
+    "ec2-13-49-44-122.eu-north-1.compute.amazonaws.com",
+    "growscape.ae",
+    "www.growscape.ae"
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -79,11 +82,14 @@ WSGI_APPLICATION = 'growscape_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'growscape_db',
+        'USER': 'growscape_user',
+        'PASSWORD': '-2Tmps8SVraR"y0}',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
