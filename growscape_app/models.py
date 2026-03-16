@@ -13,7 +13,13 @@ class Service(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            base_slug = slugify(self.name, allow_unicode=True) or "service"
+            slug = base_slug[:40]
+            counter = 1
+            while Service.objects.filter(slug=slug).exists():
+                slug = f"{base_slug[:40]}-{counter}"
+                counter += 1
+            self.slug = slug
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -86,11 +92,11 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.title)
-            slug = base_slug
+            base_slug = slugify(self.title, allow_unicode=True) or "blog"
+            slug = base_slug[:40]
             counter = 1
             while Blog.objects.filter(slug=slug).exists():
-                slug = f"{base_slug}-{counter}"
+                slug = f"{base_slug[:40]}-{counter}"
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
