@@ -252,6 +252,7 @@ Discover Growscape’s expertise in landscaping, pool construction, irrigation s
     <!-- Our Counter Section End -->
 
     <!-- Our Team Section Start -->
+{% if team_members %}
 <div class="our-team">
     <div class="container">
 
@@ -311,15 +312,12 @@ Discover Growscape’s expertise in landscaping, pool construction, irrigation s
                 </div>
 
             </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p>No team members added yet.</p>
-            </div>
             {% endfor %}
         </div>
 
     </div>
 </div>
+{% endif %}
 <!-- Our Team Section End -->
 
     <!-- Why choose Us Section Start -->
