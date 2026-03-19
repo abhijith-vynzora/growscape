@@ -9,6 +9,18 @@
     <meta name="keywords" content="landscaping, outdoor design, UAE, Dubai, gardening, garden design, landscape architecture">
     <title>{% block title %}Growscape UAE | Landscaping & Outdoor Design{% endblock %}</title>
 
+    {% block og_tags %}
+    <meta property="og:title" content="Growscape UAE | Landscaping & Outdoor Design" />
+    <meta property="og:description" content="Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor design services in the UAE." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://growscape.ae{{ request.path }}" />
+    <meta property="og:image" content="https://growscape.ae/static/images/new/landscaping.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Growscape" />
+    <meta property="og:locale" content="en_AE" />
+    {% endblock %}
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -18,6 +30,39 @@
     <!-- End Google Tag Manager -->
 
     <link rel="canonical" href="https://growscape.ae{{ request.path }}">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LandscapingBusiness",
+      "name": "Growscape Landscaping LLC",
+      "url": "https://growscape.ae{{ request.path }}",
+      "logo": "https://growscape.ae/static/new-logo-green.png",
+      "image": "https://growscape.ae/static/images/new/landscaping.webp",
+      "description": "Expert landscaping, garden maintenance, irrigation, pools, pergolas & outdoor design services in the UAE for villas and commercial spaces.",
+      "telephone": [
+        "+971566032354",
+        "+971566032544"
+      ],
+      "email": "info@growscape.ae",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dubai",
+        "addressCountry": "AE",
+        "streetAddress": "Probox Business Center"
+      },
+      "areaServed": "AE",
+      "serviceType": [
+        "Landscaping",
+        "Garden Design",
+        "Garden Maintenance",
+        "Irrigation",
+        "Swimming Pool Construction",
+        "Pergolas",
+        "Outdoor Design"
+      ]
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">

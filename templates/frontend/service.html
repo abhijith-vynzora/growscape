@@ -78,7 +78,7 @@
                                     {% if service.cover_image %}
                                         <img src="{{ service.cover_image.url }}" alt="{{ service.name }}">
                                     {% else %}
-                                        <img src="{% static 'images/service-img-1.jpg' %}" alt="">
+                                        <img src="{% static 'images/service-img-1.jpg' %}" alt="{{ service.name }} landscaping service in Dubai">
                                     {% endif %}
                                 </figure>
                             </a>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="service-btn">
                                 <a href="{% url 'service_detail' service.slug %}" class="readmore-btn">
-                                    <img src="{% static 'images/arrow-green.svg' %}" alt="">
+                                    <img src="{% static 'images/arrow-green.svg' %}" alt="Read more arrow for landscaping services">
                                 </a>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                         <div class="counter-content-box">
                             <div class="counter-item">
                                 <div class="icon-box">
-                                    <img src="{% static 'images/icon-counter-1.svg' %}" alt="">
+                                    <img src="{% static 'images/icon-counter-1.svg' %}" alt="Projects completed icon for landscaping services">
                                 </div>
                                 <div class="counter-item-content">
                                     <h2><span class="counter">320</span>+</h2>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="counter-item">
                                 <div class="icon-box">
-                                    <img src="{% static 'images/icon-counter-2.svg' %}" alt="">
+                                    <img src="{% static 'images/icon-counter-2.svg' %}" alt="Team members icon for landscape contractors">
                                 </div>
                                 <div class="counter-item-content">
                                     <h2><span class="counter">250</span>+</h2>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="counter-item">
                                 <div class="icon-box">
-                                    <img src="{% static 'images/icon-counter-3.svg' %}" alt="">
+                                    <img src="{% static 'images/icon-counter-3.svg' %}" alt="Client satisfaction icon for garden services">
                                 </div>
                                 <div class="counter-item-content">
                                     <h2><span class="counter">100</span>+</h2>
@@ -145,7 +145,7 @@
                         </div>
                         <div class="counter-image">
                             <figure class="image-anime">
-                                <img src="{% static 'images/growscape2/counter2.jpeg' %}" alt="">
+                                <img src="{% static 'images/growscape2/counter2.jpeg' %}" alt="Landscaping project image showcasing garden design in UAE">
                             </figure>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                         <div class="our-faqs-cta wow fadeInUp" data-wow-delay="0.5s">
                             <div class="faqs-cta-box">
                                 <div class="icon-box">
-                                    <img src="{% static 'images/icon-faqs-cta-box.svg' %}" alt="">
+                                    <img src="{% static 'images/icon-faqs-cta-box.svg' %}" alt="Questions icon for landscaping FAQ and consultation">
                                 </div>
                                 <div class="faqs-cta-content">
                                     <h3>Still Have Questions?</h3>
