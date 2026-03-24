@@ -7,7 +7,10 @@ from django.db.models.functions import Lower
 from django.utils import timezone
 from django.db.models import Count
 from django.db.models.functions import TruncMonth
+from django.conf import settings
 from datetime import timedelta
+import json
+from urllib import parse, request as urllib_request
 
 # Import your models
 from .models import Service, Project, TeamMember, Blog, Testimonial, Category, GalleryImage, ContactMessage, ServiceInquiry
@@ -586,13 +589,54 @@ def blog_detail(request, slug):
         "recent_blogs": recent_blogs,
     })
 
+def _verify_recaptcha(token, user_ip=None):
+    recaptcha_secret = getattr(settings, "RECAPTCHA_SECRET_KEY", "")
+    if not recaptcha_secret:
+        return False
+
+    payload = {
+        "secret": recaptcha_secret,
+        "response": token or "",
+    }
+    if user_ip:
+        payload["remoteip"] = user_ip
+
+    try:
+        encoded_payload = parse.urlencode(payload).encode("utf-8")
+        recaptcha_request = urllib_request.Request(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=encoded_payload,
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        with urllib_request.urlopen(recaptcha_request, timeout=10) as recaptcha_response:
+            response_data = json.loads(recaptcha_response.read().decode("utf-8"))
+        return bool(response_data.get("success"))
+    except Exception:
+        return False
+
 def contact(request):
+    recaptcha_site_key = getattr(settings, "RECAPTCHA_SITE_KEY", "")
+    recaptcha_secret = getattr(settings, "RECAPTCHA_SECRET_KEY", "")
+    recaptcha_enabled = bool(recaptcha_site_key and recaptcha_secret)
+
+    context = {
+        "recaptcha_site_key": recaptcha_site_key,
+        "recaptcha_enabled": recaptcha_enabled,
+        "form_data": {},
+    }
+
     if request.method == 'POST':
+        context["form_data"] = request.POST
         first_name = request.POST.get('first_name', '').strip()
         last_name = request.POST.get('last_name', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
         message = request.POST.get('msg', '').strip()
+        recaptcha_token = request.POST.get("g-recaptcha-response", "")
+
+        if recaptcha_enabled and not _verify_recaptcha(recaptcha_token, request.META.get("REMOTE_ADDR")):
+            messages.error(request, "Captcha verification failed. Please try again.")
+            return render(request, "frontend/contact.html", context)
 
         ContactMessage.objects.create(
             first_name=first_name,
@@ -604,7 +648,7 @@ def contact(request):
         messages.success(request, "Your message has been sent successfully! We'll get back to you soon.")
         return redirect('contact')
 
-    return render(request, "frontend/contact.html")
+    return render(request, "frontend/contact.html", context)
 
 # def service_inquiry(request):
 #     services = Service.objects.all()
@@ -636,9 +680,6 @@ def contact(request):
 
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
-from django.conf import settings
-from django.shortcuts import render, redirect
-from django.contrib import messages
 
 def service_inquiry(request):
     services = Service.objects.all()
